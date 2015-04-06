@@ -50,7 +50,7 @@ class ShopifyAPIController extends AppController
     */
     public function activate()
     {
-        //$this->response->type('json');
+        $this->response->type('json');
         $this->autoRender = false;
 
         if (isset($this->request->query['code']) && isset($this->request->query['hmac'])) 
@@ -73,7 +73,7 @@ class ShopifyAPIController extends AppController
                 //Shopify API doc says to make POST request with client_id, secret and the code back
                 $response = $guzzClient->send($request);
                                 
-print_r($response);
+print_r($request);
                
                $token = $response->json();
                 
@@ -85,6 +85,8 @@ print_r($response);
             {
                 return $e;
             }   
+
+            print_r($response);
 
         }
     }

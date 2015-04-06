@@ -53,7 +53,7 @@ Router::scope(
         'controller' => 'CarrierRates'
     ],
     function ($routes) {
-        $routes->extensions(['json']);
+        //$routes->extensions(['json']);
         $routes->resources('CarrierRates');
         $routes->connect('/rates/', ['action' => 'postrates']);
         $routes->connect('/rates/*', ['action' => 'postrates']);
