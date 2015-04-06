@@ -11,6 +11,14 @@ use Cake\Network\Request;
 class ShopifyAPIController extends AppController
 {
 
+    private $redirect_uri = Configure::read('CTRACK.APP_URI');
+    private $shop = Configure::read('CTRACK.MY_SHOP')
+    private $api_key = Configure::read('CTRACK.API_KEY')
+    private $scope = Configure::read('CTRACK.SCOPE') 
+    
+
+
+
     /**
     * Step 1 End node - links to Shop and request to link app with store
     * TODO: Add checks and other fields as per Shopify docs
@@ -19,29 +27,23 @@ class ShopifyAPIController extends AppController
     {
         $this->response->type('json');
         $this->autoRender = false;
-
-        //print_r($this->request);
-
+       
         try 
         {
             if ($this->request->is('get') && 
             isset($this->request->query['shop'])) 
             {
-                $redirect_uri = Configure::read('CTRACK.APP_URI');
-
-                $install_url = "https://".Configure::read('CTRACK.MY_SHOP') . "myshopify.com/admin/oauth/authorize?client_id=" .Configure::read('CTRACK.API_KEY') . "&scope=" . Configure::read('CTRACK.SCOPE') . "&redirect_uri=" . urlencode($redirect_uri);
-
-$this->redirect($install_url);
-              // header("Location: " . $install_url);
-
+                $install_url = "https://" . $this->shop . ".myshopify.com/admin/oauth/authorize?client_id=" . $this->api_key . "&scope=" . $this->scope . "&redirect_uri=" . urlencode($this->redirect_uri);
+                $this->redirect($install_url);
             }
         }
         catch(Exception $e) 
         {
             return $e->message;
         }
-       
     }
+
+
 
     /**
     * TODO: Read up on Shopify API - any checks - What to do now - check App and Shop integration 
