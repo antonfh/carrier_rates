@@ -75,6 +75,7 @@ class ShopifyAPIController extends AppController
                                 
 print_r($response);
                
+               $token = $response->json();
                 
             } 
             catch (Guzzle\Http\Exception\BadResponseException $e) {
@@ -84,7 +85,7 @@ print_r($response);
             {
                 return $e;
             }   
-           print_r($response);
+
         }
     }
 
