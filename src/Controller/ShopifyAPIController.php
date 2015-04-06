@@ -66,15 +66,17 @@ class ShopifyAPIController extends AppController
         $this->autoRender = false;
 
         $code = $this->request->query['code'];
+        $hmac = $this->request->query["hmac"];
         $timestamp = $this->request->query["timestamp"];
         $signature = $this->request->query["signature"];
  
         // Compile signature data
-        $signature_data = $this->shared_secret . "code=" . $code . "shop=". $this->shop . ".myshopify.comtimestamp=" . $timestamp;
+        $signature_data = $this->shared_secret . "code=" . $code . "hmac=" . $hmac . "shop=". $this->shop . ".myshopify.comtimestamp=" . $timestamp;
         
+        //md5($this->shared_secret + "8e037f2c3390e3c8fd2d8721dac9e2shop=some-shop.myshopify.comtimestamp=1337178173") == "6e39a2ea9e497af6cb806720da1f1bf3"
         echo md5($signature_data) . "--" . $signature;
         // Use signature data to check that the response is from Shopify or not
-        //if (md5($signature_data) === $signature) {
+        if (md5($signature_data) == $signature) {
             // VALIDATED
             echo "Validated";
             $query = array(
