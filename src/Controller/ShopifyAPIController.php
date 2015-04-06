@@ -60,37 +60,26 @@ class ShopifyAPIController extends AppController
             //exit;
             //print_r($guzzClient);
             $request = $guzzClient->createRequest('POST', 'http://' . $this->request->query['shop'] . '/admin/oauth/access_token');
-            $request->setHeader('Content-Type', 'application/json');
-
+            //$request->setHeader('Content-Type', 'application/json');
             $postBody = $request->getBody();
-
             $postBody->setField('client_id', Configure::read('CTRACK.API_KEY'));
-            //echo $postBody->getField('client_id');
-
             $postBody->setField('client_secret', Configure::read('CTRACK.APP_SHARED_SECRET'));
-            //echo $postBody->getField('client_secret');
-
             $postBody->setField('code', $this->request->query['code']);
             //echo $postBody->getField('code');
-
-            echo json_encode($postBody->getFields());
+      // echo json_encode($postBody->getFields());
             try 
             {
 
                 //Shopify API doc says to make POST request with client_id, secret and the code back
                 $response = $guzzClient->send($request);
-                     
-               
-                print_r($response);
-               
+                                
 
-
-                 $response = $client->post('https://'.$this->request->query['shop'].'/admin/carrier_services.json', [
+                $response = $client->post('https://'.$this->request->query['shop'].'/admin/carrier_services.json', [
                                     'headers' => ['Accept' => 'application/json',
                                         'X-Shopify-Access-Token' => $response['access_token'],
                                         'Content-Type' => 'application/json'
                                     ],
-                                    'body' => '{"carrier_service": {"name": "carrier_rates","callback_url": "http://carrier2.anton.co.za/carrier/rates","format": "json","service_discovery": true}}']);
+                                    'body' => '{"carrier_service": {"name": "CarrierRates","callback_url": "http://carrier2.anton.co.za/carrier/rates","format": "json","service_discovery": true}}']);
                     print_r($response);
                 
             } 
