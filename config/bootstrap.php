@@ -198,10 +198,8 @@ DispatcherFactory::add('ControllerFactory');
 
 
 /*
-* ============= [ANTONFH][Custom loading] ===
-*/
-Plugin::load('ADmad/JwtAuth');
-
+ * ============= [ANTONFH][Custom loading] 
+ */
 Configure::write('CTRACK', [
     'APP_SHARED_SECRET' => getenv('SHARED_SECRET'),
     'APP_URI' => getenv('CALLBACK'),
