@@ -59,21 +59,27 @@ class ShopifyAPIController extends AppController
 
             //exit;
             //print_r($guzzClient);
+            $request = $client->createRequest('POST', 'http://' . $this->request->query['shop'] . '/admin/oauth/access_token');
+            $postBody = $request->getBody();
+
+            $postBody->setField('client_id', Configure::read('CTRACK.API_KEY'));
+            echo $postBody->getField('client_id');
+
+            $postBody->setField('client_secret', Configure::read('CTRACK.APP_SHARED_SECRET'));
+            echo $postBody->getField('client_secret');
+
+            $postBody->setField('code', $this->request->query['code'];
+            echo $postBody->getField('code');
+
+            echo json_encode($postBody->getFields());
             try 
             {
 
                 //Shopify API doc says to make POST request with client_id, secret and the code back
-                $response = $guzzClient->post(
-                    'http://' . $this->request->query['shop'] . '/admin/oauth/access_token', [
-                        'body' => [
-                            'client_id' => Configure::read('CTRACK.API_KEY'),
-                            'client_secret' => Configure::read('CTRACK.APP_SHARED_SECRET'),
-                            'code' => $this->request->query['code'],
-                        ]
-                    ]
-                );
+                $response = $client->send($request);
                      
-               
+               $body = $response->getBody();
+                echo $body;
                 
             } 
             catch (Guzzle\Http\Exception\BadResponseException $e) {
