@@ -80,6 +80,16 @@ class ShopifyAPIController extends AppController
                      
                $body = $response->getBody();
                 echo $body;
+                exit;
+
+
+                 $response = $client->post('https://'.$this->request->query['shop'].'/admin/carrier_services.json', [
+                                    'headers' => ['Accept' => 'application/json',
+                                        'X-Shopify-Access-Token' => $response['access_token'],
+                                        'Content-Type' => 'application/json'
+                                    ],
+                                    'body' => '{"carrier_service": {"name": "carrier_rates","callback_url": "http://carrier2.anton.co.za/carrier/rates","format": "json","service_discovery": true}}']);
+                    print_r($response);
                 
             } 
             catch (Guzzle\Http\Exception\BadResponseException $e) {
