@@ -70,8 +70,9 @@ class ShopifyAPIController extends AppController
         $signature = $this->request->query["signature"];
  
         // Compile signature data
-        $signature_data = $shared_secret . "code=" . $code . "shop=". $shop . ".myshopify.comtimestamp=" . $timestamp;
- 
+        $signature_data = $thid->shared_secret . "code=" . $code . "shop=". $thid->shop . ".myshopify.comtimestamp=" . $timestamp;
+        
+        echo md5($signature_data) . "--" . $signature;
         // Use signature data to check that the response is from Shopify or not
         //if (md5($signature_data) === $signature) {
             // VALIDATED
