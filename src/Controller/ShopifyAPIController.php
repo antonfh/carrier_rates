@@ -72,7 +72,7 @@ class ShopifyAPIController extends AppController
                         ]
                     ]
                 );
-                    print_r($response); 
+                     
                
                 
             } 
@@ -83,7 +83,7 @@ class ShopifyAPIController extends AppController
             {
                 return $e;
             }   
-           
+           print_r($response);
         }
     }
 
