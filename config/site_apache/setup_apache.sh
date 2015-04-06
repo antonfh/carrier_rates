@@ -6,9 +6,8 @@ a2ensite devtest01.uafrica.com.conf
 service apache2 restart
 a2enmod php5
 cd /var/www/carrier_rates
-composer install
 composer update
 cd /var/www
-sudo chown www-data:www-data carrier_rates/
+sudo chown -R www-data:www-data carrier_rates/
 cd /var/www/carrier_rates
 
