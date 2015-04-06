@@ -75,7 +75,7 @@ class ShopifyAPIController extends AppController
                     ]
                 );
 
-               $json = $response->json();
+               
                 
             } 
             catch (Guzzle\Http\Exception\BadResponseException $e) {
