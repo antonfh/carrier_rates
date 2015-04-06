@@ -3,7 +3,8 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Core\Configure;
-use GuzzleHttp\Client;
+use GuzzleHttp\Client as ShopifyGuzzleClient;
+use GuzzleHttp\Command\Guzzle\GuzzleClient;
 use App\Controller\AppController;
 use Cake\Network\Request;
 
@@ -49,27 +50,32 @@ class ShopifyAPIController extends AppController
     */
     public function activate()
     {
+        $this->response->type('json');
+        $this->autoRender = false;
+
         if (isset($this->request->query['code']) && isset($this->request->query['hmac'])) 
         {
-            $guzzClient = new Client();
-            echo $this->request->query['code'];
-            echo $this->request->query['hmac'];
+            $guzzClient = new ShopifyGuzzleClient();
+
+            echo Configure::read('CTRACK.APP_SHARED_SECRET') . "<br>";
+            echo Configure::read('CTRACK.API_KEY');
+            //exit;
             print_r($guzzClient);
             try 
             {
 
                 //Shopify API doc says to make POST request with client_id, secret and the code back
                 $response = $guzzClient->post(
-                    'https://' . $this->request->query['shop'] . '/admin/oauth/access_token', [
+                    'http://' . $this->request->query['shop'] . '/admin/oauth/access_token', [
                         'body' => [
-                            'client_id' => Configure::read('CTRACK.API_KEY'),
-                            'client_secret' => Configure::read('CTRACK.APP_SHARED_SECRET'),
-                            'code' => $this->request->query['code'],
+                            "client_id" => ""Configure::read('CTRACK.API_KEY')"",
+                            "client_secret" => ""Configure::read('CTRACK.APP_SHARED_SECRET')"",
+                            "code" => ""$this->request->query['code']"",
                         ]
                     ]
                 );
 
-                print_r($response->json());
+               $json = $response->json();
                 
             } 
             catch (Guzzle\Http\Exception\BadResponseException $e) {
