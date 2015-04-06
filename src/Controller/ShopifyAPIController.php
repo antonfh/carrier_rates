@@ -11,12 +11,21 @@ use Cake\Network\Request;
 class ShopifyAPIController extends AppController
 {
 
-    private $redirect_uri = Configure::read('CTRACK.APP_URI');
-    private $shop = Configure::read('CTRACK.MY_SHOP')
-    private $api_key = Configure::read('CTRACK.API_KEY')
-    private $scope = Configure::read('CTRACK.SCOPE') 
+    private  $redirect_uri;
+    private  $shop;
+    private  $api_key;
+    private  $scope;
+    private  $shared_secret;
     
-
+    public function initialize()
+    {
+        parent::initialize();
+       $this->redirect_uri = Configure::read('CTRACK.APP_URI');
+       $this->shop = Configure::read('CTRACK.MY_SHOP');
+       $this->api_key = Configure::read('CTRACK.API_KEY');
+       $this->scope = Configure::read('CTRACK.SCOPE');
+       $this->shared_secret = Configure::read('CTRACK.APP_SHARED_SECRET');
+    }
 
 
     /**
@@ -56,9 +65,7 @@ class ShopifyAPIController extends AppController
         $this->response->type('json');
         $this->autoRender = false;
 
-        $shared_secret = Configure::read('CTRACK.APP_SHARED_SECRET');
         $code = $this->request->query['code'];
-        $shop = Configure::read('CTRACK.MY_SHOP');
         $timestamp = $this->request->query["timestamp"];
         $signature = $this->request->query["signature"];
  
@@ -71,12 +78,12 @@ class ShopifyAPIController extends AppController
             echo "Validated";
             $query = array(
                 "Content-type" => "application/json", // Tell Shopify that we're expecting a response in JSON format
-                "client_id" => Configure::read('CTRACK.API_KEY'), // Your API key
-                "client_secret" => $shared_secret, // Your app credentials (secret key)
+                "client_id" => $this->api_key, // Your API key
+                "client_secret" => $this->shared_secret, // Your app credentials (secret key)
                 "code" => $code // Grab the access key from the URL
             );
             // Call our Shopify function
-            $shopify_response = $this->shopify_call(NULL, $shop, "/admin/oauth/access_token", $query, 'POST');
+            $shopify_response = $this->shopify_call(NULL, $this->shop, "/admin/oauth/access_token", $query, 'POST');
             // Convert response into a nice and simple array
             $shopify_response = json_decode($shopify_response['response'], TRUE);
             // Store the response
