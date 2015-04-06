@@ -1,4 +1,4 @@
-#PRE_INSTALL NOTES FROM ANTON - c_ratesdemo 
+##PRE_INSTALL NOTES FROM ANTON - c_ratesdemo ##
 
 This is a CakePHP3 Project for uAfrica for real time shipping rates API. 
 I have installed localy for Dev the following: 
@@ -23,9 +23,12 @@ BUT - All composer json config is already in repo- just required to do:
 
 ```CREATE DATABASE `c_ratesdemo_db` ```
 
-The user is defined in the /config/app.php (user = demouser)
+The user is defined in the /config/app.php (user = demouser) - You need to copy the app_default.php to app.php and setup
+the user for database access - app.php is not copied in git as it contains sensitive access data.
 
-To Create the tables with phinx migration run (in the project root)
+
+To Create the tables with phinx migration run (in the project root) - Make sure your Db user is setup (you can access mysql with the user,
+and remember to add the mysql details in your /config/app.php file)
 
 ```bin/cake migrations migrate```
 
