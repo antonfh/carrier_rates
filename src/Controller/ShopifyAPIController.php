@@ -68,7 +68,7 @@ class ShopifyAPIController extends AppController
             echo "Validated";
             $query = array(
                 "Content-type" => "application/json", // Tell Shopify that we're expecting a response in JSON format
-                "client_id" => Configure::read('CTRACK.API_KEY')), // Your API key
+                "client_id" => Configure::read('CTRACK.API_KEY'), // Your API key
                 "client_secret" => $shared_secret, // Your app credentials (secret key)
                 "code" => $code // Grab the access key from the URL
             );
