@@ -27,12 +27,12 @@ class ShopifyAPIController extends AppController
             if ($this->request->is('get') && 
             isset($this->request->query['shop'])) 
             {
-                $this->redirect('https://' . 
-                    $this->request->query['shop'] . 
-                    '/admin/oauth/authorize?client_id=' . Configure::read('CTRACK.API_KEY') .
-                    '&scope=' . Configure::read('CTRACK.SCOPE') .
-                    '&redirect_uri=' . Configure::read('CTRACK.APP_URI')
-                );
+                $redirect_uri = "http://".Configure::read('CTRACK.APP_URI');
+
+                $install_url = "https://" . $this->request->query['shop'] . ".myshopify.com/admin/oauth/authorize?client_id=" .Configure::read('CTRACK.API_KEY') . "&scope=" . Configure::read('CTRACK.SCOPE') . "&redirect_uri=" . urlencode($redirect_uri);
+
+               header("Location: " . $install_url);
+die();
             }
         }
         catch(Exception $e) 
@@ -53,8 +53,28 @@ class ShopifyAPIController extends AppController
         $this->response->type('json');
         $this->autoRender = false;
 
+        $shared_secret = Configure::read('CTRACK.APP_SHARED_SECRET'));
+        $code = $this->request->query['code'];
+        $shop = $this->request->query['shop'];
+        $timestamp = $this->request->query["timestamp"];
+        $signature = $this->request->query["signature"];
+ 
+        // Compile signature data
+        $signature_data = $shared_secret . "code=" . $code . "shop=". $shop . ".myshopify.comtimestamp=" . $timestamp;
+ 
+        // Use signature data to check that the response is from Shopify or not
+        if (md5($signature_data) === $signature) {
+            // VALIDATED
+            echo "Validated";
+            die();
+        } else {
+            // NOT VALIDATED - Someone is being shady!
+        }
+
         if (isset($this->request->query['code']) && isset($this->request->query['hmac'])) 
         {
+
+
             $guzzClient = new ShopifyGuzzleClient();
 
             //exit;
