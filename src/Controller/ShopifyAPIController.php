@@ -32,7 +32,7 @@ class ShopifyAPIController extends AppController
                 $install_url = Configure::read('CTRACK.MY_SHOP') . "/admin/oauth/authorize?client_id=" .Configure::read('CTRACK.API_KEY') . "&scope=" . Configure::read('CTRACK.SCOPE') . "&redirect_uri=" . urlencode($redirect_uri);
 
                header("Location: " . $install_url);
-die();
+
             }
         }
         catch(Exception $e) 
@@ -78,8 +78,8 @@ die();
             $guzzClient = new ShopifyGuzzleClient();
 
             //exit;
-            //print_r($guzzClient);
-            $request = $guzzClient->createRequest('POST', 'http://' . $this->request->query['shop'] . '/admin/oauth/access_token');
+            //print_r($guzzClient);'headers' => ['X-Foo-Header' => 'value']
+            $requestgz = $guzzClient->createRequest('POST', $shop . '/admin/oauth/access_token');
             //$request->setHeader('Content-Type', 'application/json');
             $postBody = $request->getBody();
             $postBody->setField('client_id', Configure::read('CTRACK.API_KEY'));
@@ -91,7 +91,7 @@ die();
             {
 
                 //Shopify API doc says to make POST request with client_id, secret and the code back
-                $response = $guzzClient->send($request);
+                $response = $guzzClient->send($requestgz);
                                 
 print_r($request);
                
