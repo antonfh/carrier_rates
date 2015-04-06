@@ -63,7 +63,7 @@ class ShopifyAPIController extends AppController
         $signature_data = $shared_secret . "code=" . $code . "shop=". $shop . ".myshopify.comtimestamp=" . $timestamp;
  
         // Use signature data to check that the response is from Shopify or not
-        if (md5($signature_data) === $signature) {
+        //if (md5($signature_data) === $signature) {
             // VALIDATED
             echo "Validated";
             $query = array(
@@ -77,12 +77,11 @@ class ShopifyAPIController extends AppController
             // Convert response into a nice and simple array
             $shopify_response = json_decode($shopify_response['response'], TRUE);
             // Store the response
+            print_r($shopify_response);
             $token = $shopify_response['access_token'];
             // Show token (DO NOT DO THIS IN YOUR PRODUCTION ENVIRONMENT)
             echo $token;
-        } else {
-            // NOT VALIDATED - Someone is being shady!
-        }
+       
 
        /* if (isset($this->request->query['code']) && isset($this->request->query['hmac'])) 
         {
