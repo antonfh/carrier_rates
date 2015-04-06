@@ -204,6 +204,6 @@ Configure::write('CTRACK', [
     'APP_SHARED_SECRET' => getenv('SHARED_SECRET'),
     'APP_URI' => getenv('CALLBACK'),
     'API_KEY' => getenv('API_KEY'),
-    'MY_SHOP' => 'https://mytest-46.myshopify.com',
+    'MY_SHOP' => 'mytest-46',
     'SCOPE' => 'read_shipping,write_shipping'
 ]);
