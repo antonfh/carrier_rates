@@ -52,16 +52,15 @@ class ShopifyAPIController extends AppController
         if (isset($this->request->query['code']) && isset($this->request->query['hmac'])) 
         {
             $guzzClient = new Client();
-            
+            echo $this->request->query['code'];
+            echo $this->request->query['hmac'];
+            print_r($guzzClient);
             try 
             {
 
                 //Shopify API doc says to make POST request with client_id, secret and the code back
                 $response = $guzzClient->post(
                     'https://' . $this->request->query['shop'] . '/admin/oauth/access_token', [
-                        'headers' => [
-                            'Content-Type' => 'application/json'
-                        ],
                         'body' => [
                             'client_id' => Configure::read('CTRACK.API_KEY'),
                             'client_secret' => Configure::read('CTRACK.APP_SHARED_SECRET'),
