@@ -72,6 +72,7 @@ Router::scope(
  
 
     $routes->extensions(['json']);
+    $routes->connect('', ['controller' => 'ShopifyAPI', 'action' => 'index']);
     $routes->connect('/', ['controller' => 'ShopifyAPI', 'action' => 'index']);
     
     /* Call from the shop when allowing the app to connect to the shop */
