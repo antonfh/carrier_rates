@@ -132,9 +132,9 @@ class ShopifyAPIController extends AppController
 
             print_r($response);
              print_r($this->request);
-
+            */
         }
-        */
+        
     }
 
 
