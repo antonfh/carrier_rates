@@ -53,7 +53,7 @@ die();
         $this->response->type('json');
         $this->autoRender = false;
 
-        $shared_secret = Configure::read('CTRACK.APP_SHARED_SECRET'));
+        $shared_secret = Configure::read('CTRACK.APP_SHARED_SECRET');
         $code = $this->request->query['code'];
         $shop = $this->request->query['shop'];
         $timestamp = $this->request->query["timestamp"];
