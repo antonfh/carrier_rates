@@ -93,7 +93,7 @@ class ShopifyAPIController extends AppController
                 //Shopify API doc says to make POST request with client_id, secret and the code back
                 $response = $guzzClient->send($requestgz);
                                 
-print_r($request);
+print_r($requestgz);
                
                //$token = $response->json();
                 
@@ -107,6 +107,7 @@ print_r($request);
             }   
 
             print_r($response);
+             print_r($request);
 
         }
     }
