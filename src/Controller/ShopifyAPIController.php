@@ -55,7 +55,7 @@ class ShopifyAPIController extends AppController
 
         $shared_secret = Configure::read('CTRACK.APP_SHARED_SECRET');
         $code = $this->request->query['code'];
-        $shop = $this->request->query['shop'];
+        $shop = Configure::read('CTRACK.MY_SHOP');
         $timestamp = $this->request->query["timestamp"];
         $signature = $this->request->query["signature"];
  
