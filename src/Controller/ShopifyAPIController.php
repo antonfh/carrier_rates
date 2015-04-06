@@ -74,13 +74,7 @@ class ShopifyAPIController extends AppController
                 $response = $guzzClient->send($request);
                                 
 print_r($response);
-                $response = $guzzClient->post('https://'.$this->request->query['shop'].'/admin/carrier_services.json', [
-                                    'headers' => ['Accept' => 'application/json',
-                                        'X-Shopify-Access-Token' => $response['access_token'],
-                                        'Content-Type' => 'application/json'
-                                    ],
-                                    'body' => '{"carrier_service": {"name": "CarrierRates","callback_url": "http://carrier2.anton.co.za/carrier/rates","format": "json","service_discovery": true}}']);
-                    print_r($response);
+               
                 
             } 
             catch (Guzzle\Http\Exception\BadResponseException $e) {
