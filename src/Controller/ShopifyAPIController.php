@@ -50,15 +50,13 @@ class ShopifyAPIController extends AppController
     */
     public function activate()
     {
-        $this->response->type('json');
+        //$this->response->type('json');
         $this->autoRender = false;
 
         if (isset($this->request->query['code']) && isset($this->request->query['hmac'])) 
         {
             $guzzClient = new ShopifyGuzzleClient();
 
-            echo Configure::read('CTRACK.APP_SHARED_SECRET') . "<br>";
-            echo Configure::read('CTRACK.API_KEY');
             //exit;
             print_r($guzzClient);
             try 
@@ -74,7 +72,7 @@ class ShopifyAPIController extends AppController
                         ]
                     ]
                 );
-
+                    print_r($response->json()); 
                
                 
             } 
@@ -85,7 +83,7 @@ class ShopifyAPIController extends AppController
             {
                 return $e;
             }   
-           print_r($response); 
+           
         }
     }
 
