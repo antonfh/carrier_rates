@@ -71,7 +71,7 @@ class ShopifyAPIController extends AppController
             {
 
                 //Shopify API doc says to make POST request with client_id, secret and the code back
-                $response = $guzzClient->send($request);
+                //$response = $guzzClient->send($request);
                                 
 print_r($request);
                
