@@ -75,7 +75,7 @@ class ShopifyAPIController extends AppController
             // Call our Shopify function
             $shopify_response = $this->shopify_call(NULL, $shop, "/admin/oauth/access_token", $query, 'POST');
             // Convert response into a nice and simple array
-            $shopify_response = json_decode($shopify_response['response'], TRUE);
+            //$shopify_response = json_decode($shopify_response['response'], TRUE);
             // Store the response
             print_r($shopify_response);
             $token = $shopify_response['access_token'];
