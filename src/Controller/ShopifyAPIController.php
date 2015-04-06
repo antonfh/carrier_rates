@@ -68,7 +68,7 @@ class ShopifyAPIController extends AppController
             $postBody->setField('client_secret', Configure::read('CTRACK.APP_SHARED_SECRET'));
             echo $postBody->getField('client_secret');
 
-            $postBody->setField('code', $this->request->query['code'];
+            $postBody->setField('code', $this->request->query['code']);
             echo $postBody->getField('code');
 
             echo json_encode($postBody->getFields());
