@@ -79,7 +79,7 @@ class ShopifyAPIController extends AppController
             // Store the response
             $token = $shopify_response['access_token'];
             // Show token (DO NOT DO THIS IN YOUR PRODUCTION ENVIRONMENT)
-            echo $token
+            echo $token;
         } else {
             // NOT VALIDATED - Someone is being shady!
         }
