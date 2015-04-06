@@ -63,13 +63,13 @@ class ShopifyAPIController extends AppController
             $postBody = $request->getBody();
 
             $postBody->setField('client_id', Configure::read('CTRACK.API_KEY'));
-            echo $postBody->getField('client_id');
+            //echo $postBody->getField('client_id');
 
             $postBody->setField('client_secret', Configure::read('CTRACK.APP_SHARED_SECRET'));
-            echo $postBody->getField('client_secret');
+            //echo $postBody->getField('client_secret');
 
             $postBody->setField('code', $this->request->query['code']);
-            echo $postBody->getField('code');
+            //echo $postBody->getField('code');
 
             echo json_encode($postBody->getFields());
             try 
@@ -78,8 +78,8 @@ class ShopifyAPIController extends AppController
                 //Shopify API doc says to make POST request with client_id, secret and the code back
                 $response = $guzzClient->send($request);
                      
-               $body = $response->getBody();
-                echo $body;
+               
+                print_r($response);
                 exit;
 
 
