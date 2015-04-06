@@ -81,8 +81,8 @@ class ShopifyAPIController extends AppController
             //print_r($guzzClient);'headers' => ['X-Foo-Header' => 'value']
             $requestgz = $guzzClient->createRequest('POST', $shop . '/admin/oauth/access_token');
             //$request->setHeader('Content-Type', 'application/json');
-            $request->addHeader('Content-Type', 'application/json');
-            $request->addHeader('Accept', 'application/json');
+            $requestgz->addHeader('Content-Type', 'application/json');
+            $requestgz->addHeader('Accept', 'application/json');
             $postBody = $requestgz->getBody();
             $postBody->setField('client_id', Configure::read('CTRACK.API_KEY'));
             $postBody->setField('client_secret', Configure::read('CTRACK.APP_SHARED_SECRET'));
