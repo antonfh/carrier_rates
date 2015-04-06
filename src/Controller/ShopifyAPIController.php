@@ -95,6 +95,13 @@ class ShopifyAPIController extends AppController
             $shopify_response = json_decode($shopify_response['response'], TRUE);
             $token = $shopify_response['access_token'];
             echo $token;
+
+           /* $shoptokens = TableRegistry::get('Shops');
+                $tokens = $shoptokens->newEntity($this->request->data);
+                if ($articles->save($tokens)) {
+                    // ...
+                }
+                */
    
         }
         
@@ -110,11 +117,9 @@ class ShopifyAPIController extends AppController
     private function shopify_call($token, $shop, $api_endpoint, $query = array(), $method = 'GET', $request_headers = array()) {
     
         // Build URL
-        $url = "https://" . $shop . 
-                ".myshopify.com" . $api_endpoint;
+        $url = "https://" . $shop . ".myshopify.com" . $api_endpoint;
         
-        if (!is_null($query) && 
-            in_array($method, array('GET',  'DELETE'))) $url = $url . "?" . http_build_query($query);
+        if (!is_null($query) && in_array($method, array('GET',  'DELETE'))) $url = $url . "?" . http_build_query($query);
         
             // Configure cURL
             $curl = curl_init($url);
