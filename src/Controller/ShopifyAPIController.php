@@ -29,7 +29,7 @@ class ShopifyAPIController extends AppController
             {
                 $redirect_uri = Configure::read('CTRACK.APP_URI');
 
-                $install_url = $this->request->query['shop'] . "/admin/oauth/authorize?client_id=" .Configure::read('CTRACK.API_KEY') . "&scope=" . Configure::read('CTRACK.SCOPE') . "&redirect_uri=" . urlencode($redirect_uri);
+                $install_url = Configure::read('CTRACK.MY_SHOP') . "/admin/oauth/authorize?client_id=" .Configure::read('CTRACK.API_KEY') . "&scope=" . Configure::read('CTRACK.SCOPE') . "&redirect_uri=" . urlencode($redirect_uri);
 
                header("Location: " . $install_url);
 die();
