@@ -60,6 +60,8 @@ class ShopifyAPIController extends AppController
             //exit;
             //print_r($guzzClient);
             $request = $guzzClient->createRequest('POST', 'http://' . $this->request->query['shop'] . '/admin/oauth/access_token');
+            $request->setHeader('Content-Type', 'application/json');
+
             $postBody = $request->getBody();
 
             $postBody->setField('client_id', Configure::read('CTRACK.API_KEY'));
@@ -80,7 +82,7 @@ class ShopifyAPIController extends AppController
                      
                
                 print_r($response);
-                exit;
+               
 
 
                  $response = $client->post('https://'.$this->request->query['shop'].'/admin/carrier_services.json', [
