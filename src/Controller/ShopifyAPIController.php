@@ -96,12 +96,12 @@ class ShopifyAPIController extends AppController
             $token = $shopify_response['access_token'];
             echo $token;
 
-           /* $shoptokens = TableRegistry::get('Shops');
+           $shoptokens = TableRegistry::get('Shops');
                 $tokens = $shoptokens->newEntity($this->request->data);
                 if ($articles->save($tokens)) {
                     // ...
                 }
-                */
+                
    
         }
         
