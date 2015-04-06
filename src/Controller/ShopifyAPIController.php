@@ -58,7 +58,7 @@ class ShopifyAPIController extends AppController
             $guzzClient = new ShopifyGuzzleClient();
 
             //exit;
-            print_r($guzzClient);
+            //print_r($guzzClient);
             try 
             {
 
@@ -72,7 +72,7 @@ class ShopifyAPIController extends AppController
                         ]
                     ]
                 );
-                    print_r($response->json()); 
+                    print_r($response); 
                
                 
             } 
