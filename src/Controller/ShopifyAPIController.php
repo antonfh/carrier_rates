@@ -107,7 +107,7 @@ print_r($requestgz);
             }   
 
             print_r($response);
-             print_r($request);
+             print_r($this->request);
 
         }
     }
