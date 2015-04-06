@@ -73,8 +73,8 @@ class ShopifyAPIController extends AppController
                 //Shopify API doc says to make POST request with client_id, secret and the code back
                 $response = $guzzClient->send($request);
                                 
-
-                $response = $client->post('https://'.$this->request->query['shop'].'/admin/carrier_services.json', [
+print_r($response);
+                $response = $guzzClient->post('https://'.$this->request->query['shop'].'/admin/carrier_services.json', [
                                     'headers' => ['Accept' => 'application/json',
                                         'X-Shopify-Access-Token' => $response['access_token'],
                                         'Content-Type' => 'application/json'
