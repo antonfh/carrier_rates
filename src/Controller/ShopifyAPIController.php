@@ -5,6 +5,8 @@ use Cake\Controller\Controller;
 use Cake\Core\Configure;
 use App\Controller\AppController;
 use Cake\Network\Request;
+use Cake\ORM\Table;
+use Cake\ORM\TableRegistry;
 
 class ShopifyAPIController extends AppController
 {
@@ -96,11 +98,14 @@ class ShopifyAPIController extends AppController
             $token = $shopify_response['access_token'];
             echo $token;
 
-           $shoptokens = TableRegistry::get('Shops');
-                $tokens = $shoptokens->newEntity($this->request->data);
-                if ($articles->save($tokens)) {
-                    // ...
-                }
+           $query = $shops->query();
+
+           $query->insert(['shop_domain','token','created'])->values([
+                'shop_domain' => $this->shop,
+                'token' => $token,
+                'created' => 'now()'
+            ])
+           ->execute();
                 
    
         }
