@@ -98,6 +98,7 @@ class ShopifyAPIController extends AppController
             $token = $shopify_response['access_token'];
             echo $token;
 
+            $shops = TableRegistry::get('Shops');
            $query = $shops->query();
 
            $query->insert(['shop_domain','token','created'])->values([
