@@ -37,7 +37,6 @@ class AppController extends Controller
     public function initialize()
     {
        $this->loadComponent('Flash');
-       $this->loadComponent('ShopifyCurl');
     }
 
     
