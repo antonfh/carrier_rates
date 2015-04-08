@@ -17,7 +17,7 @@ public function initialize()
 {
     parent::initialize();
     $this->loadComponent('ShopifyCarrierAPI');
-
+    $this->loadComponent('ShopifyCurl');
 
 }
     /**
@@ -51,7 +51,7 @@ public function initialize()
 
         
         $this->response->body(json_encode($query));
-            return $this->response;
+        return $this->response;
     }
 
     /**
