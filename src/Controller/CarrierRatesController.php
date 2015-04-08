@@ -13,13 +13,13 @@ use Cake\Core\Configure;
 class CarrierRatesController extends AppController
 {
 
-public function initialize()
-{
-    parent::initialize();
-    $this->loadComponent('ShopifyCarrierAPI');
-    $this->loadComponent('ShopifyCurl');
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('ShopifyCarrierAPI');
+    }
+    
 
-}
     /**
      * postRates POST  method - get JSON string for carrier rates
      *
