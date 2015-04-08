@@ -29,9 +29,7 @@ class CarrierRatesController extends AppController
         $this->response->type('json');
         $this->autoRender = false;
         $postal_code = $this->request->params['pass'];
-        //$code = $this->request->data['rate'];
-        //$code[0];
-        echo "API". Configure::read('CTRACK.APP_SHARED_SECRET');
+
        //print_r($code);
         if ($postal_code){
            $query['rates'] = $this->CarrierRates
