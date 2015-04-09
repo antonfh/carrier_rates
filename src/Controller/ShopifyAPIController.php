@@ -114,7 +114,7 @@ class ShopifyAPIController extends AppController
 
 
             //Enable the App now since we have the Token 
-            $this->enableAppOnShopify();
+            $response = $this->enableAppOnShopify();
         }
         
     }
@@ -127,8 +127,12 @@ class ShopifyAPIController extends AppController
     */
     private function enableAppOnShopify()
     {
+        $this->response->type('json');
+        $this->autoRender = false;
+        
         $query = array(
                     'carrier_service' => array(
+                        "Content-type" => "application/json",
                         'name' => 'CarrierRates',
                         'callback_url' => 'http:\/\/carrier2.anton.co.za\/carrier\/rates',
                         'format' => 'json',
@@ -140,6 +144,10 @@ class ShopifyAPIController extends AppController
             $shopify_response = $this->ShopifyCurl->shopify_call($this->token, $this->shop, "/admin/carrier_services", $query, 'POST');
                 print_r($shopify_response);
             $shopify_response = json_decode($shopify_response['response'], TRUE);
-    }           print_r($shopify_response);
+             print_r($shopify_response);
+
+             return $response;
+    }           
+
 
 }
