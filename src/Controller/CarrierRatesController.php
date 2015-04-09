@@ -29,19 +29,25 @@ class CarrierRatesController extends AppController
         $this->response->type('json');
         $this->autoRender = false;
         $postal_code = $this->request->params['pass'];
+//debug($this->request);
+        //Check for Shop Id and then get Token
+        if (isset($this->request->query['shop'])) {
+            $tokenObj = new ShopifyCarrierAPIComponent();
+            $token = $tokenObj->getToken($this->request->query['shop'])
+        }
 
        //print_r($code);
         if ($postal_code){
            $query['rates'] = $this->CarrierRates
             ->find()
-            ->select(['id', 'service_name', 'service_code', 'total_price', 'currency'])
+            ->select(['id', 'service_name', 'service_code', 'total_price', 'currency','min_delivery_date' => "2015-04-13 14:48:45 -0400", 'max_delivery_date' => "2015-04-19 14:48:45 -0400"])
             ->where(['postal_code =' => $postal_code[0]])
             ->order(['created' => 'DESC']);
         }
         else{
             $query['rates'] = $this->CarrierRates
             ->find()
-            ->select(['id', 'service_name', 'service_code', 'total_price', 'currency'])
+            ->select(['id', 'service_name', 'service_code', 'total_price', 'currency', 'min_delivery_date' => "2015-04-13 14:48:45 -0400", 'max_delivery_date' => "2015-04-19 14:48:45 -0400"])
             ->where(['postal_code >' => 0])
             ->order(['created' => 'DESC']);
         }
