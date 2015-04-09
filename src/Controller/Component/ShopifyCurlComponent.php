@@ -10,7 +10,7 @@ class ShopifyCurlComponent extends Component
     * HAVING NO LUCK GETTING SHOPIFY TO GIVE ME ANY TOKEN - TRY SOME CURL 
     * THIS IS NOT MY OWN FUNCTION
     */
-    private function shopify_call($token, $shop, $api_endpoint, $query = array(), $method = 'GET', $request_headers = array()) {
+    protected function shopify_call($token, $shop, $api_endpoint, $query = array(), $method = 'GET', $request_headers = array()) {
     
         // Build URL
         $url = "https://" . $shop . ".myshopify.com" . $api_endpoint;
