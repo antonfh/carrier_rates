@@ -43,7 +43,7 @@ class ShopifyCarrierAPIComponent extends Component
 	* @param String $shop shop name for this token save
 	* @param String $token The return Token to validate our app
 	*/
-	protected function setToken($shop, $token)
+	public function setToken($shop, $token)
 	{
 
 		$this->theToken = $token;
