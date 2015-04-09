@@ -33,7 +33,7 @@ class CarrierRatesController extends AppController
         //Check for Shop Id and then get Token
         if (isset($this->request->query['shop'])) {
             $tokenObj = new ShopifyCarrierAPIComponent();
-            $token = $tokenObj->getToken($this->request->query['shop'])
+            $token = $tokenObj->getToken($this->request->query['shop']);
         }
 
        //print_r($code);
