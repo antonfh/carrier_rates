@@ -129,7 +129,7 @@ class ShopifyAPIController extends AppController
     {
         $this->response->type('json');
         $this->autoRender = false;
-        
+
         $query = array(
                     'carrier_service' => array(
                         "Content-type" => "application/json",
@@ -142,9 +142,8 @@ class ShopifyAPIController extends AppController
       
             //Use the Shopfy Curl component at /Component/ShopifyCurlComponent to send the request to Server
             $shopify_response = $this->ShopifyCurl->shopify_call($this->token, $this->shop, "/admin/carrier_services", $query, 'POST');
-                print_r($shopify_response);
+       
             $shopify_response = json_decode($shopify_response['response'], TRUE);
-             print_r($shopify_response);
 
              return $response;
     }           
