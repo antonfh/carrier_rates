@@ -145,7 +145,7 @@ class ShopifyAPIController extends AppController
        
             $shopify_response = json_decode($shopify_response['response'], TRUE);
 
-             return $response;
+             return $shopify_response;
     }           
 
 
