@@ -107,7 +107,7 @@ class ShopifyAPIController extends AppController
             $query->insert(['shop_domain','token','created'])->values([
                 'shop_domain' => $this->shop,
                 'token' => $token,
-                'created' => Time::now();
+                'created' => Time::now()
             ])
             ->execute();
                 
