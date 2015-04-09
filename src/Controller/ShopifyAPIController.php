@@ -95,7 +95,7 @@ class ShopifyAPIController extends AppController
             );
       
             //$curlCall = new ShopifyCurl();
-            $shopify_response = $this->shopify_call(NULL, $this->shop, "/admin/oauth/access_token", $query, 'POST');
+            $shopify_response = $this->ShopifyCurl->shopify_call(NULL, $this->shop, "/admin/oauth/access_token", $query, 'POST');
 
             $shopify_response = json_decode($shopify_response['response'], TRUE);
             $token = $shopify_response['access_token'];
