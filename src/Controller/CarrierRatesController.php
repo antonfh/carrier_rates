@@ -40,19 +40,19 @@ class CarrierRatesController extends AppController
         if ($postal_code){
            $query['rates'] = $this->CarrierRates
             ->find()
-            ->select(['id', 'service_name', 'service_code', 'total_price', 'currency','min_delivery_date' => "2015-04-13 14:48:45 -0400", 'max_delivery_date' => "2015-04-19 14:48:45 -0400"])
+            ->select(['id', 'service_name', 'service_code', 'total_price', 'currency','min_delivery_date' => '2015-04-13 14:48:45 -0400', 'max_delivery_date' => "2015-04-19 14:48:45 -0400"])
             ->where(['postal_code =' => $postal_code[0]])
             ->order(['created' => 'DESC']);
         }
         else{
             $query['rates'] = $this->CarrierRates
             ->find()
-            ->select(['id', 'service_name', 'service_code', 'total_price', 'currency', 'min_delivery_date' => "2015-04-13 14:48:45 -0400", 'max_delivery_date' => "2015-04-19 14:48:45 -0400"])
+            ->select(['id', 'service_name', 'service_code', 'total_price', 'currency', 'min_delivery_date' => '2015-04-13 14:48:45 -0400', 'max_delivery_date' => '2015-04-19 14:48:45 -0400'])
             ->where(['postal_code >' => 0])
             ->order(['created' => 'DESC']);
         }
 
-
+debug($query);
         
         $this->response->body(json_encode($query));
         return $this->response;

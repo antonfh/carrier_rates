@@ -7,6 +7,7 @@ use App\Controller\AppController;
 use Cake\Network\Request;
 use Cake\ORM\Table;
 use Cake\ORM\TableRegistry;
+use Cake\I18n\time
 
 class ShopifyAPIController extends AppController
 {
@@ -93,8 +94,8 @@ class ShopifyAPIController extends AppController
                 "code" => $code
             );
       
-            $curlCall = new ShopifyCurl();
-            $shopify_response = $curlCall->shopify_call(NULL, $this->shop, "/admin/oauth/access_token", $query, 'POST');
+            //$curlCall = new ShopifyCurl();
+            $shopify_response = $this->shopify_call(NULL, $this->shop, "/admin/oauth/access_token", $query, 'POST');
 
             $shopify_response = json_decode($shopify_response['response'], TRUE);
             $token = $shopify_response['access_token'];
@@ -106,7 +107,7 @@ class ShopifyAPIController extends AppController
             $query->insert(['shop_domain','token','created'])->values([
                 'shop_domain' => $this->shop,
                 'token' => $token,
-                'created' => date('Y-m-d H:i:s')
+                'created' => Time::now();
             ])
             ->execute();
                 
