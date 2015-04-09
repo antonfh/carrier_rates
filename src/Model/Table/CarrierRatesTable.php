@@ -14,7 +14,6 @@ class CarrierRatesTable extends Table
 {
 
 
-
     /**
      * Initialize method
      *

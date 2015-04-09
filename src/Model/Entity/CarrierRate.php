@@ -8,13 +8,9 @@ use Cake\ORM\Entity;
  */
 class CarrierRate extends Entity
 {
-
+    //Define my virtual fields to create a dynamic min and max date for the payload required 
+    //by the Carrier Rates service
     protected $_virtual = ['min_delivery_date','max_delivery_date'];      
-                            
-    public $virtualFields = array(
-                                   '1',
-                                '2'
-                          );
                           
 
     /**

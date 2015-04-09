@@ -5,10 +5,12 @@ use App\Controller\AppController;
 use GuzzleHttp\Client;
 use Cake\Core\Configure;
 //require ROOT . DS . 'vendor' . DS . 'autoload.php';
+
 /**
  * CarrierRates Controller
  *
  * @property \App\Model\Table\CarrierRatesTable $CarrierRates
+ * 
  */
 class CarrierRatesController extends AppController
 {
@@ -23,7 +25,7 @@ class CarrierRatesController extends AppController
     /**
      * postRates POST  method - get JSON string for carrier rates
      *
-     * @return void
+     * @return json $response return the carrier rates to the Carrier Rates app for the shop
      */
     public function postRates() {
         $this->response->type('json');
@@ -46,6 +48,7 @@ class CarrierRatesController extends AppController
         }
         else{
            
+            //Return all the Carrier Rates with Call to CarrierRates Table obj, and use VirtualField defined in Entity Model CarrierRate
             $query['rates'] = $this->CarrierRates
             ->find('all',
                 array(
@@ -56,12 +59,10 @@ class CarrierRatesController extends AppController
                             'currency',
                             'min_delivery_date' => "date_format(CURDATE(),'%Y-%m-%d %H:%i:%s +0200')",
                             'max_delivery_date' => "date_format( ADDDATE(CURDATE(), INTERVAL (FLOOR( 1 + RAND( ) *4 )) DAY),'%Y-%m-%d %H:%i:%s +0200')"
-
                             ),
                         "order" => array("created ASC"),
                         "conditions" => array('postal_code >' => '0')
                         ));
-
         }
 
         

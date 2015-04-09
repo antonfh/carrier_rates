@@ -5,9 +5,7 @@ use Cake\Controller\Controller;
 use Cake\Core\Configure;
 use App\Controller\AppController;
 use Cake\Network\Request;
-use Cake\ORM\Table;
-use Cake\ORM\TableRegistry;
-use Cake\I18n\Time;
+
 
 class ShopifyAPIController extends AppController
 {
@@ -17,11 +15,13 @@ class ShopifyAPIController extends AppController
     private  $api_key;
     private  $scope;
     private  $shared_secret;
+    private  $token;
     
     public function initialize()
     {
         parent::initialize();
         $this->loadComponent('ShopifyCurl');
+        $this->loadComponent('ShopifyCarrierAPI');
         $this->redirect_uri = Configure::read('CTRACK.APP_URI');
         $this->shop = Configure::read('CTRACK.MY_SHOP');
         $this->api_key = Configure::read('CTRACK.API_KEY');
@@ -31,6 +31,9 @@ class ShopifyAPIController extends AppController
 
 
     /**
+    * Main route function when the App needs to be installed and redirects to 
+    * the shop page - where confirmation and access is requested to install the app
+    *
     * Step 1 End node - links to Shop and request to link app with store
     * TODO: Add checks and other fields as per Shopify docs
     */
@@ -39,11 +42,10 @@ class ShopifyAPIController extends AppController
         $this->response->type('json');
         $this->autoRender = false;
        
-        try 
-        {
+        try {
             if ($this->request->is('get') && 
-            isset($this->request->query['shop'])) 
-            {
+                isset($this->request->query['shop'])) {
+                
                 $install_url = "https://" . $this->shop . 
                                 ".myshopify.com/admin/oauth/authorize?client_id=" . $this->api_key . 
                                 "&scope=" . $this->scope . 
@@ -59,15 +61,13 @@ class ShopifyAPIController extends AppController
     }
 
 
-
     /**
-    * TODO: Read up on Shopify API - any checks - What to do now - check App and Shop integration 
+    * Function to request access to  install the App and to get a Token then
     * 
     *  STEP 2:
     *  CALL The Shop back - Shopify to return an Access Token with this Call
     */
-    public function activate()
-    {
+    public function activate() {
         //Setup Cake to not return a template and use json (as from what I understand)
         $this->response->type('json');
         $this->autoRender = false;
@@ -83,10 +83,16 @@ class ShopifyAPIController extends AppController
                             "shop=". $this->shop . 
                             ".myshopify.comtimestamp=" . $timestamp;
 
-        //Query only valid if signature from shopify match
+        /*
+        * Validation of Authenticity - Only valid call if Signature and hmac hashes matches
+        */
         if (md5($signature_data) == $signature) {
- 
-            echo "Validated";
+
+            /*
+            * Build the payload to POST to Shopify service endpoint : 
+            *  /admin/oauth/access_token
+            *  https://docs.shopify.com/api/authentication/oauth
+            */ 
             $query = array(
                 "Content-type" => "application/json",
                 "client_id" => $this->api_key,
@@ -94,34 +100,49 @@ class ShopifyAPIController extends AppController
                 "code" => $code
             );
       
-            //$curlCall = new ShopifyCurl();
-            $shopify_response = $this->ShopifyCurl->shopify_call(NULL, $this->shop, "/admin/oauth/access_token", $query, 'POST');
+            //Use the Shopfy Curl component at /Component/ShopifyCurlComponent to send the request to Server
+            $shopify_response = $this->ShopifyCurl->shopify_call(
+                    NULL, 
+                    $this->shop, 
+                    "/admin/oauth/access_token", 
+                    $query, 
+                    'POST'
+                );
 
             $shopify_response = json_decode($shopify_response['response'], TRUE);
-            $token = $shopify_response['access_token'];
-            echo $token;
+            $this->token = $shopify_response['access_token'];
 
-            $shops = TableRegistry::get('Shops');
-            $query = $shops->query();
+            //Ask the Shopify Carrier API to save our token to the Db    
+            $this->ShopifyCarrierAPI->setToken($this->shop, $this->token);  
 
-            $query->insert(['shop_domain','token','created'])->values([
-                'shop_domain' => $this->shop,
-                'token' => $token,
-                'created' => Time::now()
-            ])
-            ->execute();
-                
-   
+
+            //Enable the App now since we have the Token 
+            $this->enableAppOnShopify();
         }
         
     }
 
+    /**
+    * Private function used after valid token return to enable the application on Shopify
+    * 
+    * https://docs.shopify.com/api/carrierservice#create
+    * 
+    */
+    private function enableAppOnShopify()
+    {
+        $query = array(
+                    "carrier_service" => (
+                        "name" => "CarrierRates",
+                        "callback_url" => "http:\/\/carrier2.anton.co.za\/carrier\/rates",
+                        "format" => "json",
+                        "service_discovery" => true
+                    )
+                );
+      
+            //Use the Shopfy Curl component at /Component/ShopifyCurlComponent to send the request to Server
+            $shopify_response = $this->ShopifyCurl->shopify_call($this->token, $this->shop, "/admin/carrier_services", $query, 'POST');
 
-
-
-    
-
-
-
+            $shopify_response = json_decode($shopify_response['response'], TRUE);
+    }
 
 }

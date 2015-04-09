@@ -3,6 +3,9 @@ namespace App\Controller\Component;
 
 use Cake\Controller\Component;
 
+/**
+* Class to handle the Curl calls to the provider
+*/
 class ShopifyCurlComponent extends Component
 {
 
@@ -17,37 +20,35 @@ class ShopifyCurlComponent extends Component
         
         if (!is_null($query) && in_array($method, array('GET',  'DELETE'))) $url = $url . "?" . http_build_query($query);
         
-            // Configure cURL
-            $curl = curl_init($url);
-            curl_setopt($curl, CURLOPT_HEADER, TRUE);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
-            curl_setopt($curl, CURLOPT_FOLLOWLOCATION, TRUE);
-            curl_setopt($curl, CURLOPT_MAXREDIRS, 3);
-            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
-            // curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 3);
-            // curl_setopt($curl, CURLOPT_SSLVERSION, 3);
-            curl_setopt($curl, CURLOPT_USERAGENT, 'My New Shopify App v.1');
-            curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 30);
-            curl_setopt($curl, CURLOPT_TIMEOUT, 30);
-            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
-            
-            // Setup headers
-            $request_headers[] = "";
-            if (!is_null($token)) $request_headers[] = "X-Shopify-Access-Token: " . $token;
-            curl_setopt($curl, CURLOPT_HTTPHEADER, $request_headers);
-            
-            if ($method != 'GET' && in_array($method, array('POST', 'PUT'))) {
-                if (is_array($query)) $query = http_build_query($query);
-                curl_setopt ($curl, CURLOPT_POSTFIELDS, $query);
-            }
-            
-            // Send request to Shopify and capture any errors
-            $response = curl_exec($curl);
-            $error_number = curl_errno($curl);
-            $error_message = curl_error($curl);
-            
-            // Close cURL to be nice
-            curl_close($curl);
+        // Configure cURL
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_HEADER, TRUE);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, TRUE);
+        curl_setopt($curl, CURLOPT_MAXREDIRS, 3);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($curl, CURLOPT_USERAGENT, 'My New Shopify App v.1');
+        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 30);
+        curl_setopt($curl, CURLOPT_TIMEOUT, 30);
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
+        
+        // Setup headers
+        $request_headers[] = "";
+        if (!is_null($token)) $request_headers[] = "X-Shopify-Access-Token: " . $token;
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $request_headers);
+        
+        if ($method != 'GET' && in_array($method, array('POST', 'PUT'))) {
+            if (is_array($query)) $query = http_build_query($query);
+            curl_setopt ($curl, CURLOPT_POSTFIELDS, $query);
+        }
+        
+        // Send request to Shopify and capture any errors
+        $response = curl_exec($curl);
+        $error_number = curl_errno($curl);
+        $error_message = curl_error($curl);
+        
+        // Close cURL to be nice
+        curl_close($curl);
             
             // Return an error is cURL has a problem
             if ($error_number) {
