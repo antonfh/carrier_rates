@@ -7,7 +7,7 @@ use App\Controller\AppController;
 use Cake\Network\Request;
 use Cake\ORM\Table;
 use Cake\ORM\TableRegistry;
-use Cake\I18n\time;
+use Cake\I18n\Time;
 
 class ShopifyAPIController extends AppController
 {
