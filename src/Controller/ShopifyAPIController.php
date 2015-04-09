@@ -71,9 +71,9 @@ class ShopifyAPIController extends AppController
 
         //Get some variables pre-calls and from rquests
         $code = $this->request->query['code'];
-        $hmac = $this->request->query["hmac"];
-        $timestamp = $this->request->query["timestamp"];
-        $signature = $this->request->query["signature"];
+        $hmac = $this->request->query['hmac'];
+        $timestamp = $this->request->query['timestamp'];
+        $signature = $this->request->query['signature'];
         $signature_data = $this->shared_secret . 
                             "code=" . $code . 
                             "hmac=" . $hmac . 
@@ -131,12 +131,12 @@ class ShopifyAPIController extends AppController
         $this->autoRender = false;
 
         $query = array(
-                    'carrier_service' => array(
+                    "carrier_service" => array(
                         "Content-type" => "application/json",
-                        'name' => 'CarrierRates',
-                        'callback_url' => 'http:\/\/carrier2.anton.co.za\/carrier\/rates',
-                        'format' => 'json',
-                        'service_discovery' => true
+                        "name" => "CarrierRates",
+                        "callback_url" => "http:\/\/carrier2.anton.co.za\/carrier\/rates",
+                        "format" => "json",
+                        "service_discovery" => true
                     )
                 );
       
