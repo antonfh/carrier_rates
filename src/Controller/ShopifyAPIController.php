@@ -6,7 +6,6 @@ use Cake\Core\Configure;
 use App\Controller\AppController;
 use Cake\Network\Request;
 
-
 class ShopifyAPIController extends AppController
 {
 
@@ -28,7 +27,6 @@ class ShopifyAPIController extends AppController
         $this->scope = Configure::read('CTRACK.SCOPE');
         $this->shared_secret = Configure::read('CTRACK.APP_SHARED_SECRET');
     }
-
 
     /**
     * Main route function when the App needs to be installed and redirects to 
@@ -59,7 +57,6 @@ class ShopifyAPIController extends AppController
             return $e->message;
         }
     }
-
 
     /**
     * Function to request access to  install the App and to get a Token then
@@ -131,12 +128,13 @@ class ShopifyAPIController extends AppController
     private function enableAppOnShopify()
     {
         $query = array(
-                    "carrier_service" => (
-                        "name" => "CarrierRates",
-                        "callback_url" => "http:\/\/carrier2.anton.co.za\/carrier\/rates",
-                        "format" => "json",
-                        "service_discovery" => true
-                    )
+                    "carrier_service"  
+                        array(
+                            "name" => "CarrierRates",
+                            "callback_url" => "http:\/\/carrier2.anton.co.za\/carrier\/rates",
+                            "format" => "json",
+                            "service_discovery" => true
+                        )
                 );
       
             //Use the Shopfy Curl component at /Component/ShopifyCurlComponent to send the request to Server

@@ -6,18 +6,12 @@ use Cake\ORM\TableRegistry;
 use Cake\I18n\Time;
 use Cake\ORM\Table;
 
-
 /**
 * Shopy Carrier API class to get Token
 */
 class ShopifyCarrierAPIComponent extends Component
 {
 	//private $theToken;
-	
-	public function initialize() 
-	{
-        parent::initialize();
-    }
 
 	/**
 	* TODO: Use this and not Controller for the API auth - later 
@@ -26,8 +20,7 @@ class ShopifyCarrierAPIComponent extends Component
 	* @return void
 	*/	
 	public function checkAccess($data) 
-	{
-	}
+	{}
 
 	/**
 	* Get the Token from the Shops table using CakePHP3 ORM find method
