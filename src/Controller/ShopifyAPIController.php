@@ -128,13 +128,12 @@ class ShopifyAPIController extends AppController
     private function enableAppOnShopify()
     {
         $query = array(
-                    "carrier_service"  
-                        array(
-                            "name" => "CarrierRates",
-                            "callback_url" => "http:\/\/carrier2.anton.co.za\/carrier\/rates",
-                            "format" => "json",
-                            "service_discovery" => true
-                        )
+                    'carrier_service' => array(
+                        'name' => 'CarrierRates',
+                        'callback_url' => 'http:\/\/carrier2.anton.co.za\/carrier\/rates',
+                        'format' => 'json',
+                        'service_discovery' => true
+                    )
                 );
       
             //Use the Shopfy Curl component at /Component/ShopifyCurlComponent to send the request to Server
