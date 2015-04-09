@@ -13,6 +13,8 @@ use Cake\Validation\Validator;
 class CarrierRatesTable extends Table
 {
 
+
+
     /**
      * Initialize method
      *

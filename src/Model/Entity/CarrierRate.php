@@ -9,6 +9,14 @@ use Cake\ORM\Entity;
 class CarrierRate extends Entity
 {
 
+    protected $_virtual = ['min_delivery_date','max_delivery_date'];      
+                            
+    public $virtualFields = array(
+                                   '1',
+                                '2'
+                          );
+                          
+
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
      *
