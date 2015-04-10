@@ -137,16 +137,16 @@ class ShopifyAPIController extends AppController
                         "name" => "CarrierRates",
                         "callback_url" => "http:\/\/carrier2.anton.co.za\/carrier\/rates",
                         "format" => "json",
-                        "service_discovery" => true
+                        "service_discovery" => "true"
                     )
                 );
       
             //Use the Shopfy Curl component at /Component/ShopifyCurlComponent to send the request to Server
             $shopify_response = $this->ShopifyCurl->shopify_call($this->token, $this->shop, "/admin/carrier_services", $query, 'POST');
-       
+       return $shopify_response;
             $shopify_response = json_decode($shopify_response['response'], TRUE);
 
-             return $shopify_response;
+             
     }           
 
 
