@@ -37,7 +37,6 @@ class ShopifyCurlComponent extends Component
         if (!is_null($token)) {
         	$request_headers[] = "X-Shopify-Access-Token: " . $token;
         	$request_headers[] = "Accept: application\/json";
-        	$request_headers[] = "Content-Type: application\/json";
         }
 
         curl_setopt($curl, CURLOPT_HTTPHEADER, $request_headers);
@@ -45,6 +44,8 @@ class ShopifyCurlComponent extends Component
         if ($method != 'GET' && in_array($method, array('POST', 'PUT'))) {
             if (is_array($query)) $query = http_build_query($query);
             curl_setopt ($curl, CURLOPT_POSTFIELDS, $query);
+
+            print_r($query);
         }
         
         // Send request to Shopify and capture any errors
