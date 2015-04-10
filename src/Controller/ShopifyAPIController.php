@@ -115,6 +115,8 @@ class ShopifyAPIController extends AppController
 
             //Enable the App now since we have the Token 
             $response = $this->enableAppOnShopify();
+
+            print_r($response);
         }
         
     }
@@ -132,7 +134,6 @@ class ShopifyAPIController extends AppController
 
         $query = array(
                     "carrier_service" => array(
-                        "Content-type" => "application/json",
                         "name" => "CarrierRates",
                         "callback_url" => "http:\/\/carrier2.anton.co.za\/carrier\/rates",
                         "format" => "json",
