@@ -34,9 +34,11 @@ class ShopifyCurlComponent extends Component
         
         // Setup headers
         $request_headers[] = "";
-        if (!is_null($token)) $request_headers[] = "X-Shopify-Access-Token: " . $token;
-        $request_headers[] = "Accept: application\/json";
-        $request_headers[] = "Content-Type: application\/json";
+        if (!is_null($token)) {
+        	$request_headers[] = "X-Shopify-Access-Token: " . $token;
+        	$request_headers[] = "Accept: application\/json";
+        	$request_headers[] = "Content-Type: application\/json";
+        }
 
         curl_setopt($curl, CURLOPT_HTTPHEADER, $request_headers);
         
