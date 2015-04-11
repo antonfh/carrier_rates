@@ -32,7 +32,7 @@ class ShopifyCurlComponent extends Component
         curl_setopt($curl, CURLOPT_TIMEOUT, 30);
         # Return response
 		//curl_setopt($curl, CURLOPT_RETURNTRANSFER, true );
-        curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+        //curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
         
         // Setup headers
