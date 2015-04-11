@@ -38,7 +38,8 @@ class ShopifyCurlComponent extends Component
         $request_headers[] = "";
         if (!is_null($token)) {
         	$request_headers[] = "X-Shopify-Access-Token: " . $token;
-        	$request_headers[] = "Accept: application\/json";
+        	$request_headers[] = "Accept:application/json";
+        	$request_headers[] = "Content-Type:application/json";
         }
         curl_setopt($curl, CURLOPT_HTTPHEADER, $request_headers);
         
@@ -78,7 +79,7 @@ class ShopifyCurlComponent extends Component
                     $headers[trim($h[0])] = trim($h[1]);
                 }
             // Return headers and Shopify's response
-            return array('headers' => $headers, 'response' => $response[1], 'debug' => $query . '-token-'.$token);
+            return array('headers' => $headers, 'response' => $response[1], 'debug' => $query . '-token-'.$token, 'request_headers' . json_encode($request_headers));
         }
     }
 }

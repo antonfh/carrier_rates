@@ -158,7 +158,7 @@ class ShopifyAPIController extends AppController
         $shopify_response = $this->ShopifyCurl->shopify_call(
                                                     $this->token, 
                                                     $this->shop, 
-                                                    "/admin/carrier_services.json", 
+                                                    "/admin/carrier_services", 
                                                     $query, 
                                                     'POST'
                                                 );
