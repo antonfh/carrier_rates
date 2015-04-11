@@ -13,13 +13,15 @@ class ShopifyCurlComponent extends Component
     * HAVING NO LUCK GETTING SHOPIFY TO GIVE ME ANY TOKEN - TRY SOME CURL 
     * THIS IS NOT MY OWN FUNCTION
     */
-    public function shopify_call($token, $shop, $api_endpoint, $query = array(), $method = 'GET', $request_headers = array()) {
+    public function shopify_call($token, $shop, $api_endpoint, $query = array(), $method = 'GET', $request_headers = array()) 
+    {
     
         // Build URL
         $url = "https://" . $shop . ".myshopify.com" . $api_endpoint;
         
         if (!is_null($query) && in_array($method, array('GET',  'DELETE'))) $url = $url . "?" . http_build_query($query);
         
+        // Configure cURL
         // Configure cURL
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_HEADER, TRUE);
@@ -30,22 +32,21 @@ class ShopifyCurlComponent extends Component
         curl_setopt($curl, CURLOPT_USERAGENT, 'My New Shopify App v.1');
         curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 30);
         curl_setopt($curl, CURLOPT_TIMEOUT, 30);
-        # Return response
-		//curl_setopt($curl, CURLOPT_RETURNTRANSFER, true );
-        //curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
         
         // Setup headers
         $request_headers[] = "";
         if (!is_null($token)) {
         	$request_headers[] = "X-Shopify-Access-Token: " . $token;
-        	$request_headers[] = "Accept: application/json";
+        	$request_headers[] = "Accept: application\/json";
         }
-
         curl_setopt($curl, CURLOPT_HTTPHEADER, $request_headers);
         
         if ($method != 'GET' && in_array($method, array('POST', 'PUT'))) {
-            if (is_array($query)) $query = http_build_query($query);
+            
+            if (is_array($query)) 
+            	$query = http_build_query($query);
+            
             curl_setopt ($curl, CURLOPT_POSTFIELDS, $query);
         }
         
@@ -60,6 +61,7 @@ class ShopifyCurlComponent extends Component
         	//echo '<pre>'.print_r(json_decode(file_get_contents("php://input")),1).'</pre>';
             // Return an error is cURL has a problem
             if ($error_number) {
+                
                 return $error_message;
             } else {
                 // No error, return Shopify's response by parsing out the body and the headers
