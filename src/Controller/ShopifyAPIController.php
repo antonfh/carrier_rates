@@ -106,7 +106,7 @@ class ShopifyAPIController extends AppController
                     'POST'
                 );
 
-
+print_r($shopify_response);
             $shopify_response = json_decode($shopify_response['response'], TRUE);
             print_r($shopify_response);
 
