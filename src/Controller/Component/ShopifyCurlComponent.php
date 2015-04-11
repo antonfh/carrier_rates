@@ -31,8 +31,8 @@ class ShopifyCurlComponent extends Component
         curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 30);
         curl_setopt($curl, CURLOPT_TIMEOUT, 30);
         # Return response
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true );
-        curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+		//curl_setopt($curl, CURLOPT_RETURNTRANSFER, true );
+        //curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
         
         // Setup headers
@@ -64,11 +64,13 @@ class ShopifyCurlComponent extends Component
             } else {
                 // No error, return Shopify's response by parsing out the body and the headers
                 $response = preg_split("/\r\n\r\n|\n\n|\r\r/", $response, 2);
+                
                 // Convert headers into an array
                 $headers = array();
                 $header_data = explode("\n",$response[0]);
                 $headers['status'] = $header_data[0]; // Does not contain a key, have to explicitly set
                 array_shift($header_data); // Remove status, we've already set it above
+                
                 foreach($header_data as $part) {
                     $h = explode(":", $part);
                     $headers[trim($h[0])] = trim($h[1]);
