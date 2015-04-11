@@ -113,9 +113,10 @@ class ShopifyAPIController extends AppController
             $this->ShopifyCarrierAPI->setToken($this->shop, $this->token);  
 
             //Enable the App now since we have the Token 
-            $response = $this->enableAppOnShopify();
+            //$response = $this->enableAppOnShopify();
 
-            print_r($response);
+            //print_r($response);
+
         }
         
     }
