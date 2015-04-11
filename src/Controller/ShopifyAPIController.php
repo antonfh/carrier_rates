@@ -133,7 +133,7 @@ class ShopifyAPIController extends AppController
         $this->autoRender = false;
 
         $sfpayload = array( "name" => "CarrierRates",
-                            "callback_url" => "http:\/\/carrier2.anton.co.za\/carrier\/rates",
+                            "callback_url" => "http://carrier2.anton.co.za/carrier/rates",
                             "format" => "json",
                             "service_discovery" => "true"
                 );
