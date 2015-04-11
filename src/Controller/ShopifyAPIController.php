@@ -161,7 +161,7 @@ class ShopifyAPIController extends AppController
         
         if ($result['carrier_service']['active'] == 'true'){
 
-            echo 'The App is installed and working as carrier service inside the shop checkout <Make a nice page here or redirect to shop now>'
+            echo 'The App is installed and working as carrier service inside the shop checkout <Make a nice page here or redirect to shop now>';
         }
         else {
             echo 'Shop not activated - here are some errors';
