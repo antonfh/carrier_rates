@@ -78,7 +78,7 @@ class ShopifyCurlComponent extends Component
                     $headers[trim($h[0])] = trim($h[1]);
                 }
             // Return headers and Shopify's response
-            return array('headers' => $headers, 'response' => $response[1] . ' [MY_TOKEN]' . $token .'-RequestHeader:'.json_encode($request_headers));
+            return array('headers' => $headers, 'response' => $response[1] . json_encode($request_headers));
         }
     }
 }
