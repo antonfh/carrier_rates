@@ -105,16 +105,24 @@ class ShopifyAPIController extends AppController
                     $query, 
                     'POST'
                 );
-
+echo 'RESPONSE CALL1\n\r';
 print_r($shopify_response);
-            $shopify_response = json_decode($shopify_response['response'], TRUE);
-            print_r($shopify_response);
 
-            $this->token = $shopify_response['access_token'];
-            echo "TOKEN-".$this->token;
-            //Ask the Shopify Carrier API to save our token to the Db    
-            $this->ShopifyCarrierAPI->setToken($this->shop, $this->token);  
+            //Seems sometimes an array return not json or no response?
+            if (isset($shopify_response['response'])) {
+                $shopify_response_token = json_decode($shopify_response['response'], TRUE);
 
+                echo "RESPONSE CALL2\n\r";
+                print_r($shopify_response_token);
+
+                $this->token = $shopify_response_token['access_token'];
+                echo "TOKEN-".$this->token;
+                //Ask the Shopify Carrier API to save our token to the Db    
+                $this->ShopifyCarrierAPI->setToken($this->shop, $this->token);  
+            }
+            else {
+                return 'ERROR';
+            }
             //Enable the App now since we have the Token 
             //$response = $this->enableAppOnShopify();
 
