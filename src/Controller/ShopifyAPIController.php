@@ -138,16 +138,12 @@ class ShopifyAPIController extends AppController
                             "service_discovery" => "true"
                 );
 
-        $query  = json_encode(
-                        array("carrier_service"=> $sfpayload ) 
-                    );
+        $query  = array("carrier_service" => $sfpayload );
       
-            //Use the Shopfy Curl component at /Component/ShopifyCurlComponent to send the request to Server
-            $shopify_response = $this->ShopifyCurl->shopify_call($this->token, $this->shop, "/admin/carrier_services", $query, 'POST');
-            return $shopify_response;
-            //$shopify_response = json_decode($shopify_response['response'], TRUE);
-
-             
+        //Use the Shopfy Curl component at /Component/ShopifyCurlComponent to send the request to Server
+        $shopify_response = $this->ShopifyCurl->shopify_call($this->token, $this->shop, "/admin/carrier_services", $query, 'POST');
+        return $shopify_response;
+        //$shopify_response = json_decode($shopify_response['response'], TRUE);     
     }           
 
 
