@@ -30,13 +30,16 @@ class ShopifyCurlComponent extends Component
         curl_setopt($curl, CURLOPT_USERAGENT, 'My New Shopify App v.1');
         curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 30);
         curl_setopt($curl, CURLOPT_TIMEOUT, 30);
+        # Return response
+		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true )
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json'))
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
         
         // Setup headers
         $request_headers[] = "";
         if (!is_null($token)) {
-        	$request_headers[] = "X-Shopify-Access-Token: " . $token;
-        	$request_headers[] = "Accept: application\/json";
+        	$request_headers[] = "X-Shopify-Access-Token:" . $token;
+        	$request_headers[] = "Accept:application/json";
         }
 
         curl_setopt($curl, CURLOPT_HTTPHEADER, $request_headers);
@@ -55,7 +58,8 @@ class ShopifyCurlComponent extends Component
         
         // Close cURL to be nice
         curl_close($curl);
-            
+            //ANTON TEST
+        echo '<pre>'.print_r(json_decode(file_get_contents("php://input")),1).'</pre>';
             // Return an error is cURL has a problem
             if ($error_number) {
                 return $error_message;

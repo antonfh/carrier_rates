@@ -132,19 +132,20 @@ class ShopifyAPIController extends AppController
         $this->response->type('json');
         $this->autoRender = false;
 
-        $query = array(
-                    "carrier_service" => array(
-                        "name" => "CarrierRates",
-                        "callback_url" => "http:\/\/carrier2.anton.co.za\/carrier\/rates",
-                        "format" => "json",
-                        "service_discovery" => "true"
-                    )
+        $sfpayload = array( "name" => "CarrierRates",
+                            "callback_url" => "http:\/\/carrier2.anton.co.za\/carrier\/rates",
+                            "format" => "json",
+                            "service_discovery" => "true"
                 );
+
+        $query  = json_encode(
+                        array("carrier_service"=> $sfpayload ) 
+                    );
       
             //Use the Shopfy Curl component at /Component/ShopifyCurlComponent to send the request to Server
             $shopify_response = $this->ShopifyCurl->shopify_call($this->token, $this->shop, "/admin/carrier_services", $query, 'POST');
-       return $shopify_response;
-            $shopify_response = json_decode($shopify_response['response'], TRUE);
+            return $shopify_response;
+            //$shopify_response = json_decode($shopify_response['response'], TRUE);
 
              
     }           
