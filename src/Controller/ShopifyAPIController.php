@@ -117,22 +117,17 @@ class ShopifyAPIController extends AppController
                     echo $error = json_last_error();
                 }
                 else {
-                     echo "TOKEN-".$this->token;
                     //Ask the Shopify Carrier API to save our token to the Db    
                     $this->ShopifyCarrierAPI->setToken($this->shop, $this->token);  
 
                     //Enable the App now since we have the Token 
                     $response = $this->enableAppOnShopify();
-
-                    print_r($response);
                 }
-               
             }
             else {
                 return 'ERROR';
             }
         }
-        
     }
 
     /**
@@ -158,11 +153,20 @@ class ShopifyAPIController extends AppController
         $shopify_response = $this->ShopifyCurl->shopify_call(
                                                     $this->token, 
                                                     $this->shop, 
-                                                    "/admin/carrier_services", 
+                                                    '/admin/carrier_services', 
                                                     $query, 
                                                     'POST'
                                                 );
-        return $shopify_response;
+        $result = json_decode($shopify_response['response'], TRUE);
+        
+        if ($result['carrier_service']['active'] == 'true'){
+
+            echo 'The App is installed and working as carrier service inside the shop checkout <Make a nice page here or redirect to shop now>'
+        }
+        else {
+            echo 'Shop not activated - here are some errors';
+            print_r($result);
+        }
         //$shopify_response = json_decode($shopify_response['response'], TRUE);     
     }           
 
