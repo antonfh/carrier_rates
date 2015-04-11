@@ -111,7 +111,7 @@ class ShopifyAPIController extends AppController
             echo "TOKEN-".$this->token;
             //Ask the Shopify Carrier API to save our token to the Db    
             $this->ShopifyCarrierAPI->setToken($this->shop, $this->token);  
-
+print_r($shopify_response);
             //Enable the App now since we have the Token 
             //$response = $this->enableAppOnShopify();
 
