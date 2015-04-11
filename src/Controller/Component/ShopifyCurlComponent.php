@@ -47,8 +47,6 @@ class ShopifyCurlComponent extends Component
         if ($method != 'GET' && in_array($method, array('POST', 'PUT'))) {
             if (is_array($query)) $query = http_build_query($query);
             curl_setopt ($curl, CURLOPT_POSTFIELDS, $query);
-
-            print_r($query);
         }
         
         // Send request to Shopify and capture any errors
@@ -59,7 +57,7 @@ class ShopifyCurlComponent extends Component
         // Close cURL to be nice
         curl_close($curl);
             //ANTON TEST
-        echo '<pre>'.print_r(json_decode(file_get_contents("php://input")),1).'</pre>';
+        	//echo '<pre>'.print_r(json_decode(file_get_contents("php://input")),1).'</pre>';
             // Return an error is cURL has a problem
             if ($error_number) {
                 return $error_message;

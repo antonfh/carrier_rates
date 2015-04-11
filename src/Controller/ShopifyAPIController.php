@@ -112,7 +112,6 @@ class ShopifyAPIController extends AppController
             //Ask the Shopify Carrier API to save our token to the Db    
             $this->ShopifyCarrierAPI->setToken($this->shop, $this->token);  
 
-
             //Enable the App now since we have the Token 
             $response = $this->enableAppOnShopify();
 
@@ -138,10 +137,16 @@ class ShopifyAPIController extends AppController
                             "service_discovery" => "true"
                 );
 
-        $query  = array("carrier_service" => $sfpayload );
+        $query  = json_encode(array("carrier_service" => $sfpayload ));
       
         //Use the Shopfy Curl component at /Component/ShopifyCurlComponent to send the request to Server
-        $shopify_response = $this->ShopifyCurl->shopify_call($this->token, $this->shop, "/admin/carrier_services.json", $query, 'POST');
+        $shopify_response = $this->ShopifyCurl->shopify_call(
+                                                    $this->token, 
+                                                    $this->shop, 
+                                                    "/admin/carrier_services.json", 
+                                                    $query, 
+                                                    'POST'
+                                                );
         return $shopify_response;
         //$shopify_response = json_decode($shopify_response['response'], TRUE);     
     }           
