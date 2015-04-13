@@ -31,7 +31,7 @@ class CarrierRatesController extends AppController
     public function postRates() {
         $this->response->type('json');
         $this->autoRender = false;
-	    $dataPost = $this->request->input('json_decode', 5, false);
+	    $dataPost = $this->request->input('json_decode', false);
 	    if (isset($dataPost->data->rate)) {
 		    $postal_code = $dataPost->data->rate->destination->postal_code;
 	    }
