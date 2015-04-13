@@ -40,8 +40,7 @@ class CarrierRatesController extends AppController
             $tokenObj = new ShopifyCarrierAPIComponent();
             $token = $tokenObj->getToken($this->request->query['shop']);
         }
-
-       print_r($this->request->data);
+	    
         if (isset($postal_code)){
            $query['rates'] = $this->CarrierRates
             ->find()
