@@ -100,7 +100,7 @@ class ShopifyAPIController extends AppController
                             "hmac=" . $hmac . 
                             "shop=". $this->_shop .
                             ".myshopify.comtimestamp=" . $timestamp;
-
+die($signature_data);
         /*
         * Validation of Authenticity - Only valid call if Signature and hmac hashes matches
         */
