@@ -70,8 +70,8 @@
       <file leaf-file-name="CarrierRatesController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller/CarrierRatesController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.65084743" vertical-offset="108" max-vertical-offset="3150">
-              <caret line="38" column="22" selection-start-line="38" selection-start-column="22" selection-end-line="38" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.52881354" vertical-offset="216" max-vertical-offset="3150">
+              <caret line="38" column="48" selection-start-line="38" selection-start-column="48" selection-end-line="38" selection-end-column="48" />
               <folding>
                 <element signature="e#33#66#0#PHP" expanded="true" />
               </folding>
@@ -569,8 +569,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/CarrierRatesController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.65084743" vertical-offset="108" max-vertical-offset="3150">
-          <caret line="38" column="22" selection-start-line="38" selection-start-column="22" selection-end-line="38" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.52881354" vertical-offset="216" max-vertical-offset="3150">
+          <caret line="38" column="48" selection-start-line="38" selection-start-column="48" selection-end-line="38" selection-end-column="48" />
           <folding>
             <element signature="e#33#66#0#PHP" expanded="true" />
           </folding>
