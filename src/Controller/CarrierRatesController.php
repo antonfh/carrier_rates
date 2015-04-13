@@ -4,6 +4,8 @@ namespace App\Controller;
 use App\Controller\AppController;
 use GuzzleHttp\Client;
 use Cake\Core\Configure;
+use Cake\ORM\Table;
+use JsonSerializable;
 //require ROOT . DS . 'vendor' . DS . 'autoload.php';
 
 /**
@@ -36,9 +38,9 @@ class CarrierRatesController extends AppController
 		    $postal_code = $dataPost['rate']['destination']['postal_code'];
 	    }
 
-	    //echo "POSTAL CODE--" . $postal_code;
+	    echo "POSTAL CODE--" . $postal_code;
 var_dump($dataPost['rate']);
-
+exit;
 
         //Check for Shop Id and then get Token
         if (isset($this->request->query['shop'])) {

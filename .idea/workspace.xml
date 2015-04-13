@@ -27,7 +27,7 @@
       <file leaf-file-name="ShopifyAPIController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/ShopifyAPIController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.5" vertical-offset="1962" max-vertical-offset="3582">
+            <state vertical-scroll-proportion="-30.857143" vertical-offset="0" max-vertical-offset="3582">
               <caret line="144" column="17" selection-start-line="144" selection-start-column="17" selection-end-line="144" selection-end-column="17" />
               <folding>
                 <element signature="e#34#65#0#PHP" expanded="true" />
@@ -59,11 +59,9 @@
       <file leaf-file-name="CarrierRatesController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller/CarrierRatesController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4881356" vertical-offset="270" max-vertical-offset="3186">
-              <caret line="39" column="26" selection-start-line="39" selection-start-column="26" selection-end-line="39" selection-end-column="26" />
-              <folding>
-                <element signature="e#33#66#0#PHP" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.14237288" vertical-offset="0" max-vertical-offset="3222">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -490,7 +488,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/ShopifyAPIController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.5" vertical-offset="1962" max-vertical-offset="3582">
+        <state vertical-scroll-proportion="-30.857143" vertical-offset="0" max-vertical-offset="3582">
           <caret line="144" column="17" selection-start-line="144" selection-start-column="17" selection-end-line="144" selection-end-column="17" />
           <folding>
             <element signature="e#34#65#0#PHP" expanded="true" />
@@ -500,11 +498,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/CarrierRatesController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4881356" vertical-offset="270" max-vertical-offset="3186">
-          <caret line="39" column="26" selection-start-line="39" selection-start-column="26" selection-end-line="39" selection-end-column="26" />
-          <folding>
-            <element signature="e#33#66#0#PHP" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.14237288" vertical-offset="0" max-vertical-offset="3222">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
