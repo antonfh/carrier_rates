@@ -100,7 +100,7 @@ class ShopifyAPIController extends AppController
                             "hmac=" . $hmac . 
                             "shop=". $this->_shop .
                             ".myshopify.comtimestamp=" . $timestamp;
-die($signature_data);
+
         /*
         * Validation of Authenticity - Only valid call if Signature and hmac hashes matches
         */
@@ -117,7 +117,7 @@ die($signature_data);
                 "client_secret" => $this->_shared_secret,
                 "code" => $code
             );
-      
+	        die($query);
             //Use the Shopfy Curl component at /Component/ShopifyCurlComponent to send the request to Server
             $shopify_response = $this->ShopifyCurl->shopify_call(
                     NULL, 
