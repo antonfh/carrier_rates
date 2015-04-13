@@ -17,7 +17,6 @@ class ShopifyCurlComponent extends Component
     */
     public function shopify_call($token, $shop, $api_endpoint, $query = array(), $method = 'GET', $request_headers = array()) 
     {
-    
         // Build URL
         $url = "https://" . $shop . ".myshopify.com" . $api_endpoint;
         
