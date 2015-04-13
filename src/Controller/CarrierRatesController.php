@@ -42,7 +42,7 @@ class CarrierRatesController extends AppController
         }
 
        print_r($this->request->data);
-        if ($postal_code > 0){
+        if (isset($postal_code)){
            $query['rates'] = $this->CarrierRates
             ->find()
             ->select(['id', 'service_name', 'service_code', 'total_price', 'currency','min_delivery_date', 'max_delivery_date'])
