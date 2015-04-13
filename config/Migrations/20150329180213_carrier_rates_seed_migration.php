@@ -52,6 +52,9 @@ class CarrierRatesSeedMigration extends AbstractMigration
      */
     public function down()
     {
-
+	    $exists = $this->hasTable('carrier_rates');
+	    if($exists) {
+		    $this->execute("DELETE FROM carrier_rates");
+	    }
     }
 }

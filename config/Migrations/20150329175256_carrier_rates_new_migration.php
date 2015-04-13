@@ -29,7 +29,7 @@ class CarrierRatesNewMigration extends AbstractMigration
             $courier_rates
                     ->addColumn('service_name', 'string', array('limit' => 25))
                     ->addColumn('service_code', 'string', array('limit' => 5))
-                    ->addColumn('total_price', 'decimal', array('precision' => 5, 'scale' => 2))
+                    ->addColumn('total_price', 'integer', array('limit' => 4))
                     ->addColumn('currency', 'string', array('limit' => 4))
                     ->addColumn('postal_code', 'integer', array('limit' => 4))
                     ->addColumn('created', 'datetime')
