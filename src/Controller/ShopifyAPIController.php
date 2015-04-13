@@ -132,18 +132,16 @@ class ShopifyAPIController extends AppController
             if (isset($shopify_response['response'])) {
 
                 $shopify_response_token = json_decode($shopify_response['response'], TRUE);
+	            if (json_last_error() === JSON_ERROR_NONE){
+		            $this->_token = $shopify_response_token['access_token'];
 
-                $this->_token = $shopify_response_token['access_token'];
+		            //Ask the Shopify Carrier API to save our token to the Db
+		            $this->ShopifyCarrierAPI->setToken($this->_shop, $this->_token);
 
-                if (empty($this->_token)) {
+		            //Enable the App now since we have the Token
+		            $response = $this->enableAppOnShopify();
+	            } else {
                     die('No token set, invalid return');
-                }
-                else {
-                    //Ask the Shopify Carrier API to save our token to the Db    
-                    $this->ShopifyCarrierAPI->setToken($this->_shop, $this->_token);
-
-                    //Enable the App now since we have the Token 
-                    $response = $this->enableAppOnShopify();
                 }
             }
             else {
