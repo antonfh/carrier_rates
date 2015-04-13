@@ -31,7 +31,7 @@ class CarrierRatesController extends AppController
         $this->response->type('json');
         $this->autoRender = false;
         $postal_code = $this->request->data['rate']['destination']['postal_code'];
-print_r($postal_code);
+
         //Check for Shop Id and then get Token
         if (isset($this->request->query['shop'])) {
             $tokenObj = new ShopifyCarrierAPIComponent();
