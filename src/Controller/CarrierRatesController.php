@@ -30,7 +30,7 @@ class CarrierRatesController extends AppController
     public function postRates() {
         $this->response->type('json');
         $this->autoRender = false;
-        $postal_code = $this->request->params['pass'];
+        $postal_code = $this->request->data['rate']['destination']['postal_code'];
 
         //Check for Shop Id and then get Token
         if (isset($this->request->query['shop'])) {
@@ -43,7 +43,7 @@ class CarrierRatesController extends AppController
            $query['rates'] = $this->CarrierRates
             ->find()
             ->select(['id', 'service_name', 'service_code', 'total_price', 'currency','min_delivery_date', 'max_delivery_date'])
-            ->where(['postal_code =' => $postal_code[0]])
+            ->where(['postal_code =' => $postal_code])
             ->order(['created' => 'DESC']);
         }
         else{

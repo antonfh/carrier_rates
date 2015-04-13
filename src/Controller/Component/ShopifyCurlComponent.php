@@ -4,14 +4,16 @@ namespace App\Controller\Component;
 use Cake\Controller\Component;
 
 /**
-* Class to handle the Curl calls to the provider
+ * ShopifyCurlComponent
+ * Class to handle the Curl calls to the provider
 */
 class ShopifyCurlComponent extends Component
 {
 
 	/**
-    * HAVING NO LUCK GETTING SHOPIFY TO GIVE ME ANY TOKEN - TRY SOME CURL 
-    * THIS IS NOT MY OWN FUNCTION
+     * Create curl call
+	 *
+	 * Function to build the curl call to all Shopify end points / allows handling token etc
     */
     public function shopify_call($token, $shop, $api_endpoint, $query = array(), $method = 'GET', $request_headers = array()) 
     {
@@ -22,7 +24,6 @@ class ShopifyCurlComponent extends Component
         if (!is_null($query) && in_array($method, array('GET',  'DELETE'))) $url = $url . "?" . http_build_query($query);
         
         // Configure cURL
-        // Configure cURL
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_HEADER, TRUE);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
@@ -30,8 +31,8 @@ class ShopifyCurlComponent extends Component
         curl_setopt($curl, CURLOPT_MAXREDIRS, 3);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($curl, CURLOPT_USERAGENT, 'My New Shopify App v.1');
-        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 30);
-        curl_setopt($curl, CURLOPT_TIMEOUT, 30);
+        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 90);
+        curl_setopt($curl, CURLOPT_TIMEOUT, 90);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
         
         // Setup headers

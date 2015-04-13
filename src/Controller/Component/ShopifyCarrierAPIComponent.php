@@ -8,6 +8,8 @@ use Cake\ORM\Table;
 
 /**
 * Shopy Carrier API class to get Token
+ *
+ * @author Anton Heuschen <antonfh@gmail.com>
 */
 class ShopifyCarrierAPIComponent extends Component
 {

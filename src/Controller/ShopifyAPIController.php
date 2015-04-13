@@ -5,35 +5,60 @@ use Cake\Controller\Controller;
 use Cake\Core\Configure;
 use App\Controller\AppController;
 use Cake\Network\Request;
+use Cake\Core\Exception\Exception;
+use Cake\Error\ExceptionRenderer;
+use Cake\Network\Exception\NotImplementedException;
+use Cake\Network\Exception\InternalErrorException;
+use Cake\Network\Exception\NotFoundException;
 
+/**
+ * Class ShopifyAPIController
+ *
+ * Shopify API base class to handle setting up the CarrierRates app on the uAfrica4
+ * demo test shop. Enable app on store, gets token and activates app on store with token
+ *
+ * @author Anton Heuschen <antonfh@gmail.com>
+ * @package App\Controller
+ */
 class ShopifyAPIController extends AppController
 {
+    private  $_redirect_uri;
+    private  $_shop;
+    private  $_api_key;
+    private  $_scope;
+    private  $_shared_secret;
+    private  $_token;
 
-    private  $redirect_uri;
-    private  $shop;
-    private  $api_key;
-    private  $scope;
-    private  $shared_secret;
-    private  $token;
-    
+	/**
+	 * Initialize the class
+	 *
+	 * Initialize the ShopifyAPI Controllers private methods:
+	 *  -redirect_url,
+	 *  _shop,
+	 *  _api_key,
+	 *  _scope,
+	 *  _shared_secret
+	 */
     public function initialize()
     {
         parent::initialize();
         $this->loadComponent('ShopifyCurl');
         $this->loadComponent('ShopifyCarrierAPI');
-        $this->redirect_uri = Configure::read('CTRACK.APP_URI');
-        $this->shop = Configure::read('CTRACK.MY_SHOP');
-        $this->api_key = Configure::read('CTRACK.API_KEY');
-        $this->scope = Configure::read('CTRACK.SCOPE');
-        $this->shared_secret = Configure::read('CTRACK.APP_SHARED_SECRET');
+        $this->_redirect_uri = Configure::read('CTRACK.APP_URI');
+        $this->_shop = Configure::read('CTRACK.MY_SHOP');
+        $this->_api_key = Configure::read('CTRACK.API_KEY');
+        $this->_scope = Configure::read('CTRACK.SCOPE');
+        $this->_shared_secret = Configure::read('CTRACK.APP_SHARED_SECRET');
     }
 
     /**
-    * Main route function when the App needs to be installed and redirects to 
-    * the shop page - where confirmation and access is requested to install the app
-    *
-    * Step 1 End node - links to Shop and request to link app with store
-    * TODO: Add checks and other fields as per Shopify docs
+     * Main route function when the App needs to be installed and redirects to
+     * the shop page - where confirmation and access is requested to install the app
+     *
+     * Step 1 End node - links to Shop and request to link app with store
+     * TODO: Add checks and other fields as per Shopify docs
+     *
+     * @return void
     */
 	public function index()
     {
@@ -44,17 +69,17 @@ class ShopifyAPIController extends AppController
             if ($this->request->is('get') && 
                 isset($this->request->query['shop'])) {
                 
-                $install_url = "https://" . $this->shop . 
-                                ".myshopify.com/admin/oauth/authorize?client_id=" . $this->api_key . 
-                                "&scope=" . $this->scope . 
-                                "&redirect_uri=" . urlencode($this->redirect_uri);
+                $install_url = "https://" . $this->_shop .
+                                ".myshopify.com/admin/oauth/authorize?client_id=" . $this->_api_key .
+                                "&scope=" . $this->_scope .
+                                "&redirect_uri=" . urlencode($this->_redirect_uri);
 
                 $this->redirect($install_url);
             }
         }
         catch(Exception $e) 
         {
-            return $e->message;
+            return $e->getMessage();
         }
     }
 
@@ -92,15 +117,15 @@ class ShopifyAPIController extends AppController
             */ 
             $query = array(
                 "Content-type" => "application/json",
-                "client_id" => $this->api_key,
-                "client_secret" => $this->shared_secret,
+                "client_id" => $this->_api_key,
+                "client_secret" => $this->_shared_secret,
                 "code" => $code
             );
       
             //Use the Shopfy Curl component at /Component/ShopifyCurlComponent to send the request to Server
             $shopify_response = $this->ShopifyCurl->shopify_call(
                     NULL, 
-                    $this->shop, 
+                    $this->_shop,
                     "/admin/oauth/access_token", 
                     $query, 
                     'POST'
@@ -111,21 +136,21 @@ class ShopifyAPIController extends AppController
 
                 $shopify_response_token = json_decode($shopify_response['response'], TRUE);
 
-                $this->token = $shopify_response_token['access_token'];
+                $this->_token = $shopify_response_token['access_token'];
 
-                if (empty($this->token)) {
+                if (empty($this->_token)) {
                     echo $error = json_last_error();
                 }
                 else {
                     //Ask the Shopify Carrier API to save our token to the Db    
-                    $this->ShopifyCarrierAPI->setToken($this->shop, $this->token);  
+                    $this->ShopifyCarrierAPI->setToken($this->_shop, $this->_token);
 
                     //Enable the App now since we have the Token 
                     $response = $this->enableAppOnShopify();
                 }
             }
             else {
-                return 'ERROR';
+	            $this->Flash->error('App could not be enabled on Shopify store');
             }
         }
     }
@@ -151,8 +176,8 @@ class ShopifyAPIController extends AppController
       
         //Use the Shopfy Curl component at /Component/ShopifyCurlComponent to send the request to Server
         $shopify_response = $this->ShopifyCurl->shopify_call(
-                                                    $this->token, 
-                                                    $this->shop, 
+                                                    $this->_token,
+                                                    $this->_shop,
                                                     '/admin/carrier_services', 
                                                     $query, 
                                                     'POST'
@@ -164,10 +189,10 @@ class ShopifyAPIController extends AppController
             echo 'The App is installed and working as carrier service inside the shop checkout <Make a nice page here or redirect to shop now>';
         }
         else {
-            echo 'Shop not activated - here are some errors';
-            print_r($result);
+	        //throw new NotFoundException('Could not find that post');
+	        //Not quite sure about CakePHP3 errors - doc not too clear on error in class
+	        die('Could not install app' . $result);
         }
-        //$shopify_response = json_decode($shopify_response['response'], TRUE);     
     }           
 
 

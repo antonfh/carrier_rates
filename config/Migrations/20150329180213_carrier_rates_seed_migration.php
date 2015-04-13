@@ -24,26 +24,26 @@ class CarrierRatesSeedMigration extends AbstractMigration
     {
         $exists = $this->hasTable('carrier_rates');
         if($exists) {
-            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('SuperCarriers', 'SD1', 175, 'ZAR', '1000')"); 
-            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('SuperCarriers', 'TD1', 100, 'ZAR', '1000')");   
-            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('SlowJoeCarriers', 'SD1', 125, 'ZAR', '2000')");
-            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('SlowJoeCarriers', 'TD1', 75, 'ZAR', '2000')"); 
-            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('FlashCarriers', 'SD1', 150, 'ZAR', '3000')"); 
-            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('FlashCarriers', 'TD1', 95, 'ZAR', '3000')"); 
-            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('SwiftCarriers', 'SD1', 130, 'ZAR', '4000')"); 
-            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('SwiftCarriers', 'TD1', 65, 'ZAR', '4000')"); 
-            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('LastCarrier', 'SD1', 160, 'ZAR', '5000')"); 
-            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('LastCarrier', 'TD1', 125, 'ZAR', '5000')");
-            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('SuperCarriers', 'SD1', 175, 'ZAR', '2000')"); 
-            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('SuperCarriers', 'TD1', 100, 'ZAR', '2000')");   
-            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('SlowJoeCarriers', 'SD1', 125, 'ZAR', '1000')");
-            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('SlowJoeCarriers', 'TD1', 75, 'ZAR', '1000')"); 
-            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('FlashCarriers', 'SD1', 150, 'ZAR', '4000')"); 
-            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('FlashCarriers', 'TD1', 95, 'ZAR', '4000')"); 
-            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('SwiftCarriers', 'SD1', 130, 'ZAR', '2000')"); 
-            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('SwiftCarriers', 'TD1', 65, 'ZAR', '2000')"); 
-            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('LastCarrier', 'SD1', 160, 'ZAR', '3000')"); 
-            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('LastCarrier', 'TD1', 125, 'ZAR', '3000')");
+            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('SuperCarriers', 'SD1', 17500, 'ZAR', '1000')");
+            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('SuperCarriers', 'TD1', 10000, 'ZAR', '1000')");
+            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('SlowJoeCarriers', 'SD1', 12500, 'ZAR', '2000')");
+            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('SlowJoeCarriers', 'TD1', 7500, 'ZAR', '2000')");
+            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('FlashCarriers', 'SD1', 1500, 'ZAR', '3000')");
+            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('FlashCarriers', 'TD1', 9500, 'ZAR', '3000')");
+            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('SwiftCarriers', 'SD1', 13000, 'ZAR', '4000')");
+            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('SwiftCarriers', 'TD1', 6500, 'ZAR', '4000')");
+            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('LastCarrier', 'SD1', 16000, 'ZAR', '5000')");
+            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('LastCarrier', 'TD1', 12500, 'ZAR', '5000')");
+            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('SuperCarriers', 'SD1', 17500, 'ZAR', '2000')");
+            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('SuperCarriers', 'TD1', 10000, 'ZAR', '2000')");
+            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('SlowJoeCarriers', 'SD1', 12500, 'ZAR', '1000')");
+            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('SlowJoeCarriers', 'TD1', 7500, 'ZAR', '1000')");
+            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('FlashCarriers', 'SD1', 15000, 'ZAR', '4000')");
+            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('FlashCarriers', 'TD1', 9500, 'ZAR', '4000')");
+            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('SwiftCarriers', 'SD1', 13000, 'ZAR', '2000')");
+            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('SwiftCarriers', 'TD1', 6500, 'ZAR', '2000')");
+            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('LastCarrier', 'SD1', 16000, 'ZAR', '3000')");
+            $this->execute("insert into carrier_rates(service_name, service_code,total_price,currency,postal_code) values ('LastCarrier', 'TD1', 12500, 'ZAR', '3000')");
         }
     }
 
