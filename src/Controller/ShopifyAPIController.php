@@ -84,6 +84,8 @@ class ShopifyAPIController extends AppController
     * 
     *  STEP 2:
     *  CALL The Shop back - Shopify to return an Access Token with this Call
+     *
+     * TODO: Test Some Cake Exception Handling
     */
     public function activate() {
         //Setup Cake to not return a template and use json (as from what I understand)
@@ -186,7 +188,9 @@ class ShopifyAPIController extends AppController
         else {
 	        //throw new NotFoundException('Could not find that post');
 	        //Not quite sure about CakePHP3 errors - doc not too clear on error in class
-	        die('Could not install app' . $result);
+	        //test
+	        throw new NotFoundException('Activation result not found');
+
         }
     }           
 

@@ -37,6 +37,7 @@ class CarrierRatesController extends AppController
         $this->response->type('json');
         $this->autoRender = false;
 	    $dataPost = $this->request->input('json_decode', TRUE);
+
 	    if (isset($dataPost['rate'])) {
 		    $postal_code = $dataPost['rate']['destination']['postal_code'];
 	    }
@@ -48,9 +49,6 @@ class CarrierRatesController extends AppController
         }
 
         if (isset($postal_code)){
-
-	        //test
-	        throw new NotFoundException('Its not here', 501);
 
 	        $query['rates'] = $this->CarrierRates
 		        ->find('all',
