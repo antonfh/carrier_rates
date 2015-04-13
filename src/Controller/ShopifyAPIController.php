@@ -7,9 +7,6 @@ use App\Controller\AppController;
 use Cake\Network\Request;
 use Cake\Core\Exception\Exception;
 use Cake\Error\ExceptionRenderer;
-use Cake\Network\Exception\NotImplementedException;
-use Cake\Network\Exception\InternalErrorException;
-use Cake\Network\Exception\NotFoundException;
 
 /**
  * Class ShopifyAPIController
@@ -150,7 +147,7 @@ class ShopifyAPIController extends AppController
                 }
             }
             else {
-	            $this->Flash->error('App could not be enabled on Shopify store');
+	            die('App could not be enabled on Shopify store');
             }
         }
     }

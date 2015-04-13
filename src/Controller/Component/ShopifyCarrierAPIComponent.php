@@ -36,7 +36,8 @@ class ShopifyCarrierAPIComponent extends Component
             ->find()
             ->select(['token'])
             ->where(['shop_domain =' => $domain])
-            ->order(['created' => 'DESC']);
+            ->order(['created' => 'DESC'])
+			->first();
 	}
 
 	/**
@@ -54,7 +55,8 @@ class ShopifyCarrierAPIComponent extends Component
 		$shops = TableRegistry::get('Shops');
         $query = $shops->query();
 
-        $query->insert(['shop_domain','token','created'])->values([
+        $query->insert(['shop_domain','token','created'])
+	        ->values([
             'shop_domain' => $shop,
             'token' => $token,
             'created' => Time::now()
