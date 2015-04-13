@@ -46,11 +46,20 @@ class CarrierRatesController extends AppController
         }
 
         if (isset($postal_code)){
-           $query['rates'] = $this->CarrierRates
-            ->find()
-            ->select(['id', 'service_name', 'service_code', 'total_price', 'currency','min_delivery_date', 'max_delivery_date'])
-            ->where(['postal_code =' => $postal_code])
-            ->order(['created' => 'DESC']);
+	        $query['rates'] = $this->CarrierRates
+		        ->find('all',
+			        array(
+				        "fields" => array('id',
+					        'service_name',
+					        'service_code',
+					        'total_price',
+					        'currency',
+					        'min_delivery_date' => "date_format(CURDATE(),'%Y-%m-%d %H:%i:%s +0200')",
+					        'max_delivery_date' => "date_format( ADDDATE(CURDATE(), INTERVAL (FLOOR( 1 + RAND( ) *4 )) DAY),'%Y-%m-%d %H:%i:%s +0200')"
+				        ),
+				        "order" => array("created ASC"),
+				        "conditions" => array('postal_code >' => $postal_code)
+			        ));
         }
         else{
            
