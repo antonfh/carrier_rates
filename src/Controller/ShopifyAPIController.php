@@ -5,8 +5,6 @@ use Cake\Controller\Controller;
 use Cake\Core\Configure;
 use App\Controller\AppController;
 use Cake\Network\Request;
-use Cake\Core\Exception\Exception;
-use Cake\Error\ExceptionRenderer;
 
 /**
  * Class ShopifyAPIController
@@ -41,6 +39,7 @@ class ShopifyAPIController extends AppController
         parent::initialize();
         $this->loadComponent('ShopifyCurl');
         $this->loadComponent('ShopifyCarrierAPI');
+
         $this->_redirect_uri = Configure::read('CTRACK.APP_URI');
         $this->_shop = Configure::read('CTRACK.MY_SHOP');
         $this->_api_key = Configure::read('CTRACK.API_KEY');
@@ -99,7 +98,7 @@ class ShopifyAPIController extends AppController
         $signature_data = $this->shared_secret . 
                             "code=" . $code . 
                             "hmac=" . $hmac . 
-                            "shop=". $this->shop . 
+                            "shop=". $this->_shop .
                             ".myshopify.comtimestamp=" . $timestamp;
 
         /*

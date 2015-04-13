@@ -24,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ShopifyAPIController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ShopifyAPIController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller/ShopifyAPIController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="12.059524" vertical-offset="1157" max-vertical-offset="3618">
-              <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+            <state vertical-scroll-proportion="-0.86206895" vertical-offset="2759" max-vertical-offset="3600">
+              <caret line="113" column="27" selection-start-line="113" selection-start-column="27" selection-end-line="113" selection-end-column="27" />
               <folding>
                 <element signature="e#34#65#0#PHP" expanded="true" />
               </folding>
@@ -111,11 +111,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShopifyCarrierAPIComponent.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ShopifyCarrierAPIComponent.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/Component/ShopifyCarrierAPIComponent.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8017817" vertical-offset="0" max-vertical-offset="1296">
-              <caret line="40" column="5" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
+            <state vertical-scroll-proportion="-13.333333" vertical-offset="0" max-vertical-offset="1296">
+              <caret line="20" column="49" selection-start-line="20" selection-start-column="49" selection-end-line="20" selection-end-column="49" />
               <folding>
                 <element signature="e#43#73#0#PHP" expanded="true" />
               </folding>
@@ -143,8 +143,8 @@
         <option value="$PROJECT_DIR$/src/Controller/CarrierRatesController.php" />
         <option value="$PROJECT_DIR$/config/Migrations/20150329180213_carrier_rates_seed_migration.php" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/src/Controller/ShopifyAPIController.php" />
         <option value="$PROJECT_DIR$/src/Controller/Component/ShopifyCarrierAPIComponent.php" />
+        <option value="$PROJECT_DIR$/src/Controller/ShopifyAPIController.php" />
       </list>
     </option>
   </component>
@@ -486,16 +486,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/ShopifyAPIController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="12.059524" vertical-offset="1157" max-vertical-offset="3618">
-          <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
-          <folding>
-            <element signature="e#34#65#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/AppController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.6666667" vertical-offset="0" max-vertical-offset="666">
@@ -516,10 +506,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/Component/ShopifyCarrierAPIComponent.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8017817" vertical-offset="0" max-vertical-offset="1296">
-          <caret line="40" column="5" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
+        <state vertical-scroll-proportion="-13.333333" vertical-offset="0" max-vertical-offset="1296">
+          <caret line="20" column="49" selection-start-line="20" selection-start-column="49" selection-end-line="20" selection-end-column="49" />
           <folding>
             <element signature="e#43#73#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/ShopifyAPIController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.86206895" vertical-offset="2759" max-vertical-offset="3600">
+          <caret line="113" column="27" selection-start-line="113" selection-start-column="27" selection-end-line="113" selection-end-column="27" />
+          <folding>
+            <element signature="e#34#65#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
