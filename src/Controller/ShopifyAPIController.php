@@ -95,7 +95,7 @@ class ShopifyAPIController extends AppController
         $hmac = $this->request->query['hmac'];
         $timestamp = $this->request->query['timestamp'];
         $signature = $this->request->query['signature'];
-	    
+
         $signature_data = $this->_shared_secret .
                             "code=" . $code . 
                             "hmac=" . $hmac . 

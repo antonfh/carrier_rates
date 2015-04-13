@@ -31,7 +31,7 @@ class CarrierRatesController extends AppController
         $this->response->type('json');
         $this->autoRender = false;
         $postal_code = $this->request->data['rate']['destination']['postal_code'];
-
+echo $postal_code;
         //Check for Shop Id and then get Token
         if (isset($this->request->query['shop'])) {
             $tokenObj = new ShopifyCarrierAPIComponent();
@@ -39,7 +39,7 @@ class CarrierRatesController extends AppController
         }
 
        //print_r($code);
-        if ($postal_code){
+        if ($postal_code > 0){
            $query['rates'] = $this->CarrierRates
             ->find()
             ->select(['id', 'service_name', 'service_code', 'total_price', 'currency','min_delivery_date', 'max_delivery_date'])
