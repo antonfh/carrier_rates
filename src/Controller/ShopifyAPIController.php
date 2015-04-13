@@ -60,7 +60,8 @@ class ShopifyAPIController extends AppController
     {
         $this->response->type('json');
         $this->autoRender = false;
-       
+
+	    //Yes it is only a redirect - testing how Cake acts on various error / exception
         try {
             if ($this->request->is('get') && 
                 isset($this->request->query['shop'])) {
@@ -141,15 +142,31 @@ class ShopifyAPIController extends AppController
 		            $this->ShopifyCarrierAPI->setToken($this->_shop, $this->_token);
 
 		            //Enable the App now since we have the Token
-		            $response = $this->enableAppOnShopify();
+		            $response = $this->_enableAppOnShopify();
+
+		            $result = array('Status' => 200,
+			            'Response' => $response,
+			            'Result' => 'Success');
+
 	            } else {
-                    die('No token set, invalid return');
+		            $result = array('Status' => 404,
+			            'Response' => 'Could not find token' . $shopify_response,
+			            'Result' => 'Failure');
                 }
             }
             else {
-	            die('App could not be enabled on Shopify store');
+	            $result = array('Status' => 500,
+		            'Response' => 'No response from Shopify' . $shopify_response,
+		            'Result' => 'Failure');
             }
         }
+	    else {
+		    $result = array('Status' => 403,
+			    'Response' => 'Shopify key and secret does not match - possible spoof',
+			    'Result' => 'Failure');
+	    }
+
+	    return $result;
     }
 
     /**
@@ -158,7 +175,7 @@ class ShopifyAPIController extends AppController
     * https://docs.shopify.com/api/carrierservice#create
     * 
     */
-    private function enableAppOnShopify()
+    private function _enableAppOnShopify()
     {
         $this->response->type('json');
         $this->autoRender = false;
@@ -190,7 +207,6 @@ class ShopifyAPIController extends AppController
 	        //Not quite sure about CakePHP3 errors - doc not too clear on error in class
 	        //test
 	        throw new NotFoundException('Activation result not found');
-
         }
     }           
 
