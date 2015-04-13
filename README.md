@@ -1,5 +1,9 @@
 ##PRE_INSTALL NOTES FROM ANTON - c_ratesdemo ##
 
+### PHPdocument at : 
+
+[API doc/class notes] (http://carrier2.anton.co.za/docs/api)
+
 This is a CakePHP3 Project for uAfrica for real time shipping rates API. 
 I have installed localy for Dev the following: 
 
