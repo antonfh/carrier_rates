@@ -126,7 +126,7 @@ class ShopifyAPIController extends AppController
                     $query, 
                     'POST'
                 );
-
+print_r($shopify_response);
             //Seems sometimes an array return not json or no response?
             if (isset($shopify_response['response'])) {
 
@@ -135,7 +135,7 @@ class ShopifyAPIController extends AppController
                 $this->_token = $shopify_response_token['access_token'];
 
                 if (empty($this->_token)) {
-                    echo $error = json_last_error();
+                    die('No token set, invalid return');
                 }
                 else {
                     //Ask the Shopify Carrier API to save our token to the Db    
