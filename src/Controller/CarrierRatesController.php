@@ -35,8 +35,10 @@ class CarrierRatesController extends AppController
 	    if (isset($dataPost->data->rate)) {
 		    $postal_code = $dataPost->data->rate->destination->postal_code;
 	    }
+
+	    echo "POSTAL CODE--" . $postal_code;
 var_dump($dataPost);
-print_r($dataPost->data);
+
 
         //Check for Shop Id and then get Token
         if (isset($this->request->query['shop'])) {
