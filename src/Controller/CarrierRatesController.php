@@ -32,11 +32,11 @@ class CarrierRatesController extends AppController
         $this->response->type('json');
         $this->autoRender = false;
 	    $dataPost = $this->request->input('json_decode', false);
-	    if (isset($dataPost->data->rate)) {
-		    $postal_code = $dataPost->data->rate->destination->postal_code;
+	    if (isset($dataPost->rate)) {
+		    $postal_code = $dataPost->rate->destination->postal_code;
 	    }
 
-	    echo "POSTAL CODE--" . $postal_code;
+	    //echo "POSTAL CODE--" . $postal_code;
 var_dump($dataPost);
 
 
