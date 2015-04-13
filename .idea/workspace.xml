@@ -27,8 +27,8 @@
       <file leaf-file-name="ShopifyAPIController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller/ShopifyAPIController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6848989" vertical-offset="1566" max-vertical-offset="3600">
-              <caret line="119" column="22" selection-start-line="119" selection-start-column="22" selection-end-line="119" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.7277051" vertical-offset="1134" max-vertical-offset="3618">
+              <caret line="97" column="8" selection-start-line="97" selection-start-column="8" selection-end-line="97" selection-end-column="8" />
               <folding>
                 <element signature="e#34#65#0#PHP" expanded="true" />
               </folding>
@@ -550,8 +550,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/ShopifyAPIController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6848989" vertical-offset="1566" max-vertical-offset="3600">
-          <caret line="119" column="22" selection-start-line="119" selection-start-column="22" selection-end-line="119" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.7277051" vertical-offset="1134" max-vertical-offset="3618">
+          <caret line="97" column="8" selection-start-line="97" selection-start-column="8" selection-end-line="97" selection-end-column="8" />
           <folding>
             <element signature="e#34#65#0#PHP" expanded="true" />
           </folding>

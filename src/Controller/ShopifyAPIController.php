@@ -95,7 +95,8 @@ class ShopifyAPIController extends AppController
         $hmac = $this->request->query['hmac'];
         $timestamp = $this->request->query['timestamp'];
         $signature = $this->request->query['signature'];
-        $signature_data = $this->shared_secret . 
+	    
+        $signature_data = $this->_shared_secret .
                             "code=" . $code . 
                             "hmac=" . $hmac . 
                             "shop=". $this->_shop .
@@ -117,7 +118,7 @@ class ShopifyAPIController extends AppController
                 "client_secret" => $this->_shared_secret,
                 "code" => $code
             );
-	        die($query);
+
             //Use the Shopfy Curl component at /Component/ShopifyCurlComponent to send the request to Server
             $shopify_response = $this->ShopifyCurl->shopify_call(
                     NULL, 
@@ -126,7 +127,7 @@ class ShopifyAPIController extends AppController
                     $query, 
                     'POST'
                 );
-print_r($shopify_response);
+
             //Seems sometimes an array return not json or no response?
             if (isset($shopify_response['response'])) {
 
