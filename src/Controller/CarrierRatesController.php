@@ -7,7 +7,7 @@ use Cake\Core\Configure;
 use Cake\ORM\Table;
 use Cake\ORM\Query;
 use JsonSerializable;
-use Cake\Core\Exception;
+use Cake\Network\Exception\NotFoundException;
 
 //require ROOT . DS . 'vendor' . DS . 'autoload.php';
 
@@ -50,7 +50,7 @@ class CarrierRatesController extends AppController
         if (isset($postal_code)){
 
 	        //test
-	        throw new InternalErrorException('Its not here', 501);
+	        throw new NotFoundException('Its not here', 501);
 
 	        $query['rates'] = $this->CarrierRates
 		        ->find('all',
