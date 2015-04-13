@@ -31,7 +31,7 @@ class CarrierRatesController extends AppController
         $this->response->type('json');
         $this->autoRender = false;
 
-	    if (isset($this->request->data)) {
+	    if (isset($this->request->data['rate'])) {
 		    $postal_code = $this->request->data['rate']['destination']['postal_code'];
 	    }
 
