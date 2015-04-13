@@ -5,6 +5,7 @@ use App\Controller\AppController;
 use GuzzleHttp\Client;
 use Cake\Core\Configure;
 use Cake\ORM\Table;
+use Cake\ORM\Query;
 use JsonSerializable;
 //require ROOT . DS . 'vendor' . DS . 'autoload.php';
 
@@ -33,7 +34,7 @@ class CarrierRatesController extends AppController
     public function postRates() {
         $this->response->type('json');
         $this->autoRender = false;
-	    $dataPost = $this->request->input('json_decode', true);
+	    $dataPost = $this->request->input('json_decode', TRUE);
 	    if (isset($dataPost['rate'])) {
 		    $postal_code = $dataPost['rate']['destination']['postal_code'];
 	    }
