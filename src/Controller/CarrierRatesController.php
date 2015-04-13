@@ -31,13 +31,13 @@ class CarrierRatesController extends AppController
     public function postRates() {
         $this->response->type('json');
         $this->autoRender = false;
-	    $dataPost = $this->request->input('json_decode', false);
-	    if (isset($dataPost->rate)) {
-		    $postal_code = $dataPost->rate->destination->postal_code;
+	    $dataPost = $this->request->input('json_decode', true);
+	    if (isset($dataPost['rate'])) {
+		    $postal_code = $dataPost['rate']['destination']['postal_code'];
 	    }
 
 	    //echo "POSTAL CODE--" . $postal_code;
-var_dump($dataPost);
+var_dump($dataPost['rate']);
 
 
         //Check for Shop Id and then get Token
