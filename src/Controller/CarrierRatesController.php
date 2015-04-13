@@ -8,7 +8,7 @@ use Cake\ORM\Table;
 use Cake\ORM\Query;
 use JsonSerializable;
 use Cake\Core\Exception;
-use Cake\Network\Exception;
+
 //require ROOT . DS . 'vendor' . DS . 'autoload.php';
 
 /**
