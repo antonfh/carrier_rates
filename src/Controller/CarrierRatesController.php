@@ -43,6 +43,13 @@ class CarrierRatesController extends AppController
 	    }
 
         //Check for Shop Id and then get Token
+	    /*
+	     * Leaving this step in for example and question, The service call from the Shopify page
+	     * works (well if we do not check maybe) without needing some token - I tried seeing from
+	     * the network tracing what the shop uses as or in calls but fail to see any real
+	     * auth steps from their side - how is the carrier api handled in such a way or is this not a
+	     * requirement
+	     */
         if (isset($this->request->query['shop'])) {
             $tokenObj = new ShopifyCarrierAPIComponent();
             $token = $tokenObj->getToken($this->request->query['shop']);

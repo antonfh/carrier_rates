@@ -4,6 +4,12 @@
 
 [API doc/class notes] (http://carrier2.anton.co.za/docs/api)
 
+### Quick App Activation and testing of app install:
+
+[API activate test] (http://carrier2.anton.co.za/?shop=uafrica4.myshopify.com)
+
+### Base System notes:
+
 This is a CakePHP3 Project for uAfrica for real time shipping rates API. 
 I have installed localy for Dev the following: 
 
@@ -90,7 +96,7 @@ Where AllowOvreride must not be None but set to All
 </Directory>
 ```
 
-Also make sure  to laod modules with a2enmod (Apache2 Ubuntu):
+Also make sure  to loadd modules with a2enmod (Apache2 Ubuntu):
 ```
 a2enmod rewrite
 ```
